@@ -41,5 +41,6 @@ public class ScoreActivity extends AppCompatActivity {
         score.setText(result);
 
         //checking git
+        //commit3
     }
 }
