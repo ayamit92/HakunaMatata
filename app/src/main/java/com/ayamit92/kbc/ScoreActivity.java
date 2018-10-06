@@ -39,5 +39,7 @@ public class ScoreActivity extends AppCompatActivity {
         String result=correct+"/"+total;
 
         score.setText(result);
+
+        //checking git
     }
 }
