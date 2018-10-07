@@ -4,17 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/angrytoolbackground"
     tools:context=".GameActivity">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
+        app:cardBackgroundColor="#FF008080"
         android:layout_height="170dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         card_view:cardCornerRadius="40dp">
+        <LinearLayout
+            android:background="@drawable/angrytoolbackground2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView"
@@ -27,6 +33,7 @@
             android:layout_marginTop="10dp"
             android:textColor="#000000"
             android:textSize="18sp" />
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <LinearLayout
@@ -44,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="response"
+        android:background="@drawable/buttonshape"
         android:text="optionA" />
 
     <Button
@@ -52,6 +60,7 @@
         android:layout_height="wrap_content"
         android:onClick="response"
         android:layout_marginTop="10dp"
+        android:background="@drawable/angrytoolbackground2"
         android:text="optionB" />
 
     <Button
@@ -60,6 +69,7 @@
         android:layout_height="wrap_content"
         android:onClick="response"
         android:layout_marginTop="10dp"
+        android:background="@drawable/angrytoolbackground2"
         android:text="optionC" />
 
     <Button
@@ -68,6 +78,7 @@
         android:layout_height="wrap_content"
         android:onClick="response"
         android:layout_marginTop="10dp"
+        android:background="@drawable/angrytoolbackground2"
         android:text="optionD" />
 
     </LinearLayout>
@@ -85,7 +96,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true">
 
     <Button
