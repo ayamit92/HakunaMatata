@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,40 +62,40 @@ public class GameActivity extends AppCompatActivity {
 
                 case R.id.button4:
                     if (((String) optiona.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
-                        optiona.setBackgroundColor(Color.GREEN);
+                        optiona.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
-                        optiona.setBackgroundColor(Color.RED);
+                        optiona.setBackgroundResource(R.drawable.angrytoolbackground3);
                     }
                     highlightcorrect();
                     break;
 
                 case R.id.button5:
                     if (((String) optionb.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
-                        optionb.setBackgroundColor(Color.GREEN);
+                        optionb.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
-                        optionb.setBackgroundColor(Color.RED);
+                        optionb.setBackgroundResource(R.drawable.angrytoolbackground3);
                     }
                     highlightcorrect();
                     break;
 
                 case R.id.button6:
                     if (((String) optionc.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
-                        optionc.setBackgroundColor(Color.GREEN);
+                        optionc.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
-                        optionc.setBackgroundColor(Color.RED);
+                        optionc.setBackgroundResource(R.drawable.angrytoolbackground3);
                     }
                     highlightcorrect();
                     break;
 
                 case R.id.button7:
                     if (((String) optiond.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
-                        optiond.setBackgroundColor(Color.GREEN);
+                        optiond.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
-                        optiond.setBackgroundColor(Color.RED);
+                        optiond.setBackgroundResource(R.drawable.angrytoolbackground3);
                     }
                     highlightcorrect();
                     break;
@@ -123,21 +124,22 @@ public class GameActivity extends AppCompatActivity {
         question.setText(Integer.toString(count + 1) + ". " + MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
         answer.setText("");
 
-        optiona.setBackgroundColor(0xFFD3D3D3);
-        optionb.setBackgroundColor(0xFFD3D3D3);
-        optionc.setBackgroundColor(0xFFD3D3D3);
-        optiond.setBackgroundColor(0xFFD3D3D3);
+        //optiona.setBackgroundColor(0xFFD3D3D3);
+        optiona.setBackgroundResource(R.drawable.angrytoolbackground2);
+        optionb.setBackgroundResource(R.drawable.angrytoolbackground2);
+        optionc.setBackgroundResource(R.drawable.angrytoolbackground2);
+        optiond.setBackgroundResource(R.drawable.angrytoolbackground2);
     }
 
     public void highlightcorrect() {
         if (((String) optiona.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
-            optiona.setBackgroundColor(Color.GREEN);
+            optiona.setBackgroundResource(R.drawable.angrytoolbackground4);
         if (((String) optionb.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
-            optionb.setBackgroundColor(Color.GREEN);
+            optionb.setBackgroundResource(R.drawable.angrytoolbackground4);
         if (((String) optionc.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
-            optionc.setBackgroundColor(Color.GREEN);
+            optionc.setBackgroundResource(R.drawable.angrytoolbackground4);
         if (((String) optiond.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
-            optiond.setBackgroundColor(Color.GREEN);
+            optiond.setBackgroundResource(R.drawable.angrytoolbackground4);
     }
 
     @Override

@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="response"
-        android:background="@drawable/buttonshape"
+        android:background="@drawable/angrytoolbackground2"
         android:text="optionA" />
 
     <Button
