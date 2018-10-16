@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static java.lang.Long.valueOf;
 
 
 public class GameActivity extends AppCompatActivity {
@@ -27,6 +33,9 @@ public class GameActivity extends AppCompatActivity {
     String episodeName = "";
     boolean flag = false;
     boolean clicked = false;
+    double percentage;
+    private DatabaseReference mDatabase, epref, yref;
+    long currentCount=0;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -47,9 +56,24 @@ public class GameActivity extends AppCompatActivity {
             editor.putString("Correct", String.valueOf(correct)).apply();
             editor.putString("Total", String.valueOf(count + 1)).apply();
             editor.commit();
-//          Toast.makeText(getApplicationContext(), "End of episode", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-            startActivity(intent);
+
+            yref= mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct));
+            yref.addListenerForSingleValueEvent(getCurrentCount());
+            epref.addListenerForSingleValueEvent(scoreList());
+
+            final Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    Log.i("currentCount", String.valueOf(currentCount));
+                    mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct)).setValue(currentCount+1);
+                    Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+                    startActivity(intent);
+                }
+
+            }, 3000L);
+
         }
     }
 
@@ -142,6 +166,52 @@ public class GameActivity extends AppCompatActivity {
             optiond.setBackgroundResource(R.drawable.angrytoolbackground4);
     }
 
+    public ValueEventListener scoreList() {
+        ValueEventListener nextEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long score = 0;
+                long scorePlus=0;
+                for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
+                    score = score+valueOf((Long)uniqueUserSnapshot.getValue());
+                    Log.i("scoreKey", String.valueOf(Long.valueOf(uniqueUserSnapshot.getKey())));
+                    Log.i("scoreValue", String.valueOf(Long.valueOf((Long) uniqueUserSnapshot.getValue())));
+                    Log.i("score", String.valueOf(score));
+                    Log.i("scorePlus", String.valueOf(scorePlus));
+                    if (Long.valueOf(uniqueUserSnapshot.getKey())<correct) {
+                        scorePlus = scorePlus + Long.valueOf((Long) uniqueUserSnapshot.getValue());
+                    }
+                }
+
+                percentage=(scorePlus*100)/score;
+                Log.i("percentage1", String.valueOf(percentage));
+                editor.putString("Percent", String.valueOf(percentage)).apply();
+                editor.commit();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        return nextEventListener;
+    }
+
+    public ValueEventListener getCurrentCount() {
+        ValueEventListener nextEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                currentCount = (long) dataSnapshot.getValue();
+                Log.i("snapshot",dataSnapshot.toString());
+                Log.i("snapshot1", String.valueOf(currentCount));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        return nextEventListener;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,8 +225,7 @@ public class GameActivity extends AppCompatActivity {
 
         question = (TextView) findViewById(R.id.textView);
         answer = (TextView) findViewById(R.id.textView3);
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        epref=mDatabase.child("episodes").child("episode1");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         prefs = getSharedPreferences(
                 "abc", Context.MODE_PRIVATE);
@@ -169,7 +238,11 @@ public class GameActivity extends AppCompatActivity {
 
         if (episodelistid != -1) {
             episodeName = MainActivity.episodeList.get(episodelistid);
+            editor.putString("episodeName", episodeName).apply();
+            editor.commit();
         }
+
+        epref = mDatabase.child("submissions").child("2018").child(episodeName);
 
         if (MainActivity.episodeQuestionMap.get(episodeName).size() == 0) {
             Toast.makeText(getApplicationContext(), "Try reloading the episode", Toast.LENGTH_LONG).show();
