@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import static java.lang.Long.valueOf;
 
-
+//just after initiating game activity we can load all historical score data in a map <score, frequency>, using this we can remove handler
 public class GameActivity extends AppCompatActivity {
 
     Button next, optiona, optionb, optionc, optiond;
