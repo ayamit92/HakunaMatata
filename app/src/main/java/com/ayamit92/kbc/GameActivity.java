@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,7 +55,7 @@ public class GameActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     private AdView mAdView;
-
+    private InterstitialAd mInterstitialAd;
 
     public void nextfun(View view) {
 
@@ -67,17 +68,23 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please select an option!", Toast.LENGTH_SHORT).show();
             }
         } else {
+
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                Log.i("TAG", "The interstitial wasn't loaded yet.");
+            }
+
             editor.putString("Correct", String.valueOf(correct)).apply();
             editor.putString("Total", String.valueOf(count + 1)).apply();
             editor.commit();
 
-            if (submissionsMap.get(correct)!=null)
-                currentCount=submissionsMap.get(correct);
+            if (submissionsMap.get(correct) != null)
+                currentCount = submissionsMap.get(correct);
             else
-                currentCount=0;
+                currentCount = 0;
 
-            for (Map.Entry<Integer, Long> entry : submissionsMap.entrySet())
-            {
+            for (Map.Entry<Integer, Long> entry : submissionsMap.entrySet()) {
                 score = score + entry.getValue();
                 if (entry.getKey() < correct)
                     scorePlus = scorePlus + entry.getValue();
@@ -87,7 +94,7 @@ public class GameActivity extends AppCompatActivity {
             Log.i("score", String.valueOf(score));
             Log.i("scorePlus", String.valueOf(scorePlus));
 
-            percentage = ((double)scorePlus/score)*100;
+            percentage = ((double) scorePlus / score) * 100;
             Log.i("percentage1", String.valueOf(df2.format(percentage)));
             editor.putString("Percent", String.valueOf(df2.format(percentage))).apply();
             editor.commit();
@@ -95,24 +102,26 @@ public class GameActivity extends AppCompatActivity {
             Log.i("currentCount", String.valueOf(currentCount));
             mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
 
-            Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-            startActivity(intent);
+// Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on
+// game screen and we would have switched to score screen
+//            Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+//            startActivity(intent);
 
-//            final Handler mHandler = new Handler();
-//            mHandler.postDelayed(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-//                    startActivity(intent);
-//                }
-//
-//            }, 1000L);
+            final Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+                    startActivity(intent);
+                }
+
+            }, 2000L);
 
         }
     }
 
-//      multiple buttons calling same function
+    //      multiple buttons calling same function
 //    identifying them by their id, and doing customized operations
     public void response(View view) {
         if (!clicked) {
@@ -206,7 +215,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
-                    submissionsMap.put(Integer.parseInt(uniqueUserSnapshot.getKey()),(Long)uniqueUserSnapshot.getValue());
+                    submissionsMap.put(Integer.parseInt(uniqueUserSnapshot.getKey()), (Long) uniqueUserSnapshot.getValue());
                 }
             }
 
@@ -225,6 +234,10 @@ public class GameActivity extends AppCompatActivity {
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         next = (Button) findViewById(R.id.button9);
         optiona = (Button) findViewById(R.id.button4);
