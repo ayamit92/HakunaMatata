@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.Long.valueOf;
 
@@ -41,6 +42,7 @@ public class GameActivity extends AppCompatActivity {
     private DatabaseReference mDatabase, epref;
     long currentCount = 0;
     ArrayList<Long> submissions = new ArrayList<Long>();
+    static HashMap<Integer, Long> submissionsMap = new HashMap<Integer, Long>();
     long score = 1;
     long scorePlus = 0;
     private static DecimalFormat df2 = new DecimalFormat(".##");
@@ -52,7 +54,6 @@ public class GameActivity extends AppCompatActivity {
     public void nextfun(View view) {
 
         if (count < MainActivity.episodeQuestionMap.get(episodeName).size() - 1) {
-//          epref.child(Integer.toString(++count)).addListenerForSingleValueEvent(initial_set());
             if (clicked) {
                 setValues(++count);
                 clicked = false;
@@ -65,12 +66,18 @@ public class GameActivity extends AppCompatActivity {
             editor.putString("Total", String.valueOf(count + 1)).apply();
             editor.commit();
 
-            currentCount = submissions.get(correct);
-            for (int i = 0; i < submissions.size(); i++) {
-                score = score + submissions.get(i);
-                if (i < correct)
-                    scorePlus = scorePlus + submissions.get(i);
+            if (submissionsMap.get(correct)!=null)
+                currentCount=submissionsMap.get(correct);
+            else
+                currentCount=0;
+
+            for (Map.Entry<Integer, Long> entry : submissionsMap.entrySet())
+            {
+                score = score + entry.getValue();
+                if (entry.getKey() < correct)
+                    scorePlus = scorePlus + entry.getValue();
             }
+
 
             Log.i("score", String.valueOf(score));
             Log.i("scorePlus", String.valueOf(scorePlus));
@@ -194,14 +201,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
-                    submissions.add((Long) uniqueUserSnapshot.getValue());
-
-//                    score = score+valueOf((Long)uniqueUserSnapshot.getValue());
-//                    Log.i("score", String.valueOf(score));
-//                    Log.i("scorePlus", String.valueOf(scorePlus));
-//                    if (Long.valueOf(uniqueUserSnapshot.getKey())<correct) {
-//                        scorePlus = scorePlus + Long.valueOf((Long) uniqueUserSnapshot.getValue());
-//                    }
+                    submissionsMap.put(Integer.parseInt(uniqueUserSnapshot.getKey()),(Long)uniqueUserSnapshot.getValue());
                 }
             }
 
@@ -231,6 +231,7 @@ public class GameActivity extends AppCompatActivity {
                 "abc", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
+        submissionsMap.clear();
 
         episodelistid = prefs.getInt("episodeNumber", -1);
 
