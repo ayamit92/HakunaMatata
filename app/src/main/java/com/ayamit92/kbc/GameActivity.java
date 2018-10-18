@@ -116,7 +116,7 @@ public class GameActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-            }, 2000L);
+            }, 5000L);
 
         }
     }
