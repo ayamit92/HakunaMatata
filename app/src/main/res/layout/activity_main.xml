@@ -35,21 +35,21 @@
 
    </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical" >
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:orientation="vertical" >-->
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="questionbank"
-        android:textColor="#ffffff"
-        android:background="@drawable/toolbar"
-        android:text="Question Bank" />
-    </LinearLayout>
+    <!--<Button-->
+        <!--android:id="@+id/button3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="questionbank"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:background="@drawable/toolbar"-->
+        <!--android:text="Question Bank" />-->
+    <!--</LinearLayout>-->
 
     </RelativeLayout>
 
@@ -60,7 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/toolbarbuttons"
+        app:menu="@menu/drawer_view"
+        app:headerLayout="@layout/layout_header"
+        app:itemTextColor="#ffffff"
         android:fitsSystemWindows="true" />
 
 

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +40,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
     Button qBankButton;
@@ -88,33 +90,34 @@ public class MainActivity extends AppCompatActivity {
         return nextEventListener;
     }
 
-    public void questionbank(View view) {
-        Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
-        startActivity(intent);
-
-////        handler is required as next activity gets started even before data is populated, so 1s pause time is applied
-//        final Handler mHandler = new Handler();
-//        mHandler.postDelayed(new Runnable() {
+//    public void questionbank(View view) {
+//        Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
+//        startActivity(intent);
 //
-//            @Override
-//            public void run() {
-////                         Intent intent=new Intent (getApplicationContext(),YearListActivity.class);
-//                           startActivity(intent);
-//            }
-//
-//        }, 1000L);
-    }
+//////        handler is required as next activity gets started even before data is populated, so 1s pause time is applied
+////        final Handler mHandler = new Handler();
+////        mHandler.postDelayed(new Runnable() {
+////
+////            @Override
+////            public void run() {
+//////                         Intent intent=new Intent (getApplicationContext(),YearListActivity.class);
+////                           startActivity(intent);
+////            }
+////
+////        }, 1000L);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        setNavigationViewListener();
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-        qBankButton = (Button) findViewById(R.id.button3);
+//        qBankButton = (Button) findViewById(R.id.button3);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         epref = mDatabase.child("2018");
@@ -122,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
 //        ring.start();
-
-//        Navigation drawer
 
     }
 
@@ -146,6 +147,27 @@ public class MainActivity extends AppCompatActivity {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void setNavigationViewListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        switch (item.getItemId()) {
+
+            case R.id.qb: {
+                Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
+                startActivity(intent);
+                break;
+            }
+        }
+        //close navigation drawer
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }
