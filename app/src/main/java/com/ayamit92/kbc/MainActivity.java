@@ -1,14 +1,23 @@
 package com.ayamit92.kbc;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
@@ -31,6 +40,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
     Button qBankButton;
     private DatabaseReference mDatabase, epref, yref;
 
@@ -99,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
         qBankButton = (Button) findViewById(R.id.button3);
 
@@ -109,5 +123,29 @@ public class MainActivity extends AppCompatActivity {
 //        MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
 //        ring.start();
 
+//        Navigation drawer
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbarbuttons, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_button:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

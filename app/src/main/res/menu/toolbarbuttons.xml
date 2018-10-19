@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- "Menu", should appear as action button if possible -->
+    <item
+        android:id="@+id/menu_button"
+        android:icon="@drawable/ic_baseline_menu_24px"
+        app:showAsAction="ifRoom"
+        android:title="@string/menu_string"/>
+
+</menu>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/qb"
+            android:title="@string/question_bank" />
+        <item
+            android:id="@+id/ru"
+            android:title="@string/rate_us" />
+</menu>

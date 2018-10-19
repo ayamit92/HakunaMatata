@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">kbc</string>
-    <string name="KBC">KBC</string>
+    <string name="KBC">Kaun Banega Crorepati</string>
+    <string name="menu_string">menu_string</string>
+
+    <string name="question_bank">Question Bank</string>
+    <string name="rate_us">Rate Us</string>
+
 </resources>
