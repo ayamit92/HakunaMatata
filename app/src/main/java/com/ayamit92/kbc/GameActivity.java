@@ -3,9 +3,7 @@ package com.ayamit92.kbc;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -193,10 +190,10 @@ public class GameActivity extends AppCompatActivity {
         answer.setText("");
 
         //optiona.setBackgroundColor(0xFFD3D3D3);
-        optiona.setBackgroundResource(R.drawable.angrytoolbackground2);
-        optionb.setBackgroundResource(R.drawable.angrytoolbackground2);
-        optionc.setBackgroundResource(R.drawable.angrytoolbackground2);
-        optiond.setBackgroundResource(R.drawable.angrytoolbackground2);
+        optiona.setBackgroundResource(R.drawable.toolbarpurpround40);
+        optionb.setBackgroundResource(R.drawable.toolbarpurpround40);
+        optionc.setBackgroundResource(R.drawable.toolbarpurpround40);
+        optiond.setBackgroundResource(R.drawable.toolbarpurpround40);
     }
 
     public void highlightcorrect() {

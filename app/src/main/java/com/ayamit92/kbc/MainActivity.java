@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String episodeName = "";
                 episodeList.clear();
+                episodeQuestionMap.clear();
                 for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
                     episodeName = String.valueOf(uniqueUserSnapshot.getKey());
                     episodeList.add(episodeName);

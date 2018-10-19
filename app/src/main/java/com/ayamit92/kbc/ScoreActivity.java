@@ -38,6 +38,11 @@ public class ScoreActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void home(View view){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,5 +68,12 @@ public class ScoreActivity extends AppCompatActivity {
         scoreView.setText(result);
         percentageView.setText("You are better than "+percentage+"% of the people");
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
+        startActivity(intent);
+        return;
     }
 }
