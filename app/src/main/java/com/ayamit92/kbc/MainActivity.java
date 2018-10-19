@@ -90,22 +90,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return nextEventListener;
     }
 
-//    public void questionbank(View view) {
-//        Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
-//        startActivity(intent);
+    public void questionbank(View view) {
+        Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
+        startActivity(intent);
+
+////        handler is required as next activity gets started even before data is populated, so 1s pause time is applied
+//        final Handler mHandler = new Handler();
+//        mHandler.postDelayed(new Runnable() {
 //
-//////        handler is required as next activity gets started even before data is populated, so 1s pause time is applied
-////        final Handler mHandler = new Handler();
-////        mHandler.postDelayed(new Runnable() {
-////
-////            @Override
-////            public void run() {
-//////                         Intent intent=new Intent (getApplicationContext(),YearListActivity.class);
-////                           startActivity(intent);
-////            }
-////
-////        }, 1000L);
-//    }
+//            @Override
+//            public void run() {
+////                         Intent intent=new Intent (getApplicationContext(),YearListActivity.class);
+//                           startActivity(intent);
+//            }
+//
+//        }, 1000L);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+//    populating app bar with different options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+//    onClickListener for app bar options
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -154,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
     }
 
+//    onClickListener for navigation drawer items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
