@@ -59,14 +59,21 @@ public class YearListActivity extends AppCompatActivity {
         }
     }
 
-        @Override
-        protected void onCreate (Bundle savedInstanceState){
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_year_list);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_year_list);
 
-            prefs = getSharedPreferences(
-                    "abc", Context.MODE_PRIVATE);
-            editor = prefs.edit();
+        prefs = getSharedPreferences(
+                "abc", Context.MODE_PRIVATE);
+        editor = prefs.edit();
 
-        }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        return;
+    }
+}

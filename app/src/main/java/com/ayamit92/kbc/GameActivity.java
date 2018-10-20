@@ -220,10 +220,10 @@ public class GameActivity extends AppCompatActivity {
         final Animation op3 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
         final Animation op4 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
 
-//        op1.setStartOffset(2000);
-//        op2.setStartOffset(3500);
-//        op3.setStartOffset(5000);
-//        op4.setStartOffset(6500);
+        op1.setStartOffset(2000);
+        op2.setStartOffset(3500);
+        op3.setStartOffset(5000);
+        op4.setStartOffset(6500);
 
         //ques.startAnimation(q);
         optiona.startAnimation(op1);
@@ -260,26 +260,6 @@ public class GameActivity extends AppCompatActivity {
         };
         return nextEventListener;
     }
-
-//    public Animation.AnimationListener anim(final Animation myAnim, final Button button) {
-//        Animation.AnimationListener animationListener = new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                button.startAnimation(myAnim);
-//            }
-//        };
-//        return animationListener;
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -373,5 +353,27 @@ public class GameActivity extends AppCompatActivity {
 //        };
 //        return nextEventListener;
 //    }
+
+
+//    public Animation.AnimationListener anim(final Animation myAnim, final Button button) {
+//        Animation.AnimationListener animationListener = new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//                button.startAnimation(myAnim);
+//            }
+//        };
+//        return animationListener;
+//    }
+
 
 

@@ -1,12 +1,9 @@
 package com.ayamit92.kbc;
 
-import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,9 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
@@ -31,16 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -110,6 +96,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        }, 1000L);
     }
 
+    public void motivate(View view) {
+        Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
+        startActivity(intent);
+    }
+
     public void rateus() {
         Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
@@ -142,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         epref = mDatabase.child("2018");
         epref.addListenerForSingleValueEvent(episodeList());
 
-//        MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
-//        ring.start();
+        MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
+        ring.start();
 
     }
 
@@ -183,6 +174,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.qb: {
                 Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.ms: {
+                Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
                 startActivity(intent);
                 break;
             }

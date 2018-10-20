@@ -21,7 +21,9 @@
         <activity android:name=".EpisodeListActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".YearListActivity" />
-        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".ScoreActivity" />
+        <activity android:name=".MotivationalActivity" />
+        <activity android:name=".MotivationalNonCloudActivity"></activity>
     </application>
 
 </manifest>

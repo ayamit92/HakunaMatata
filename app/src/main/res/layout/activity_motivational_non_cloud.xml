@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/toolbarblue"
+    tools:context=".MotivationalNonCloudActivity">
+
+    <Button
+        android:id="@+id/buttonTuChal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/toolbarpurpround40"
+        android:onClick="playmusic"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Tu chal - Amitabh Bachchan"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/buttonKoshish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/toolbarpurpround40"
+        android:layout_below="@+id/buttonTuChal"
+        android:onClick="playmusic"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Koshish - Amitabh Bachchan"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/buttonBelieve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/toolbarpurpround40"
+        android:layout_below="@+id/buttonKoshish"
+        android:onClick="playmusic"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Believe - Will Smith"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+</RelativeLayout>

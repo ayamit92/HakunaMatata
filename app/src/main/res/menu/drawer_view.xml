@@ -3,6 +3,11 @@
         <item
             android:id="@+id/qb"
             android:title="@string/question_bank" />
+
+        <item
+            android:id="@+id/ms"
+            android:title="@string/motivational_speeches" />
+
         <item
             android:id="@+id/ru"
             android:title="@string/rate_us" />

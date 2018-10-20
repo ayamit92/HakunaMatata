@@ -35,20 +35,6 @@ public class ScoreActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
     Boolean flag = false;
 
-//    public void retakeQuiz(View view){
-//        Intent intent=new Intent (getApplicationContext(),GameActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void episodeList(View view){
-//        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void home(View view){
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        startActivity(intent);
-//    }
 
     public void retouch(View view) {
         if (flag == false) {
@@ -57,7 +43,6 @@ public class ScoreActivity extends AppCompatActivity {
         } else
             switchafterrate(view.getId());
     }
-
 
     public void customDialogBuilder(final int funcid) {
         builder.setMessage(R.string.rateus)
