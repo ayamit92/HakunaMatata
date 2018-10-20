@@ -7,13 +7,13 @@
     android:background="@drawable/toolbarblue"
     tools:context=".ScoreActivity">
 
-        <RelativeLayout
-            android:background="@drawable/toolbarpurpround25"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="50dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/toolbarpurpround25">
 
         <TextView
             android:id="@+id/textFixed"
@@ -21,75 +21,89 @@
             android:layout_height="50dp"
             android:text="Score"
             android:textAlignment="center"
+            android:layout_marginTop="10dp"
             android:textColor="#ffffff"
             android:textSize="40sp" />
 
         <TextView
             android:id="@+id/textScore"
-            android:layout_below="@id/textFixed"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_below="@id/textFixed"
+            android:layout_marginTop="20dp"
             android:text="24/30"
             android:textAlignment="center"
-            android:layout_marginTop="20dp"
             android:textColor="#ffffff"
             android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/textPercentage"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="You are the Batman"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_alignParentBottom="true"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textPercentage"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/textScore"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:text="You are the Batman"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/textAttempt"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/textPercentage"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:text="I am the Batman"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/bb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/buttonRetake"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/toolbarpurpround40"
             android:onClick="retakeQuiz"
             android:text="RETAKE QUIZ"
             android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:layout_width="match_parent"
-            android:background="@drawable/toolbarpurpround40" />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/buttonEpisodeList"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="episodeList"
+            android:layout_marginTop="5dp"
             android:layout_weight="50"
+            android:background="@drawable/toolbarpurpround40"
+            android:onClick="episodeList"
             android:text="Episode List"
             android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:background="@drawable/toolbarpurpround40" />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/buttonHome"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/toolbarpurpround40"
             android:onClick="home"
             android:text="Return to Home"
             android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent" />
+            android:textSize="15sp" />
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -93,7 +93,11 @@ public class GameActivity extends AppCompatActivity {
 
             percentage = ((double) scorePlus / score) * 100;
             Log.i("percentage1", String.valueOf(df2.format(percentage)));
-            editor.putString("Percent", String.valueOf(df2.format(percentage))).apply();
+            if (correct == 0)
+                editor.putString("Percent", "0").apply();
+            else
+                editor.putString("Percent", String.valueOf(df2.format(percentage))).apply();
+            editor.putString("Attempts", String.valueOf(score)).apply();
             editor.commit();
 
             Log.i("currentCount", String.valueOf(currentCount));

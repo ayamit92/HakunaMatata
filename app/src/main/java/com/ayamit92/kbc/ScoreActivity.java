@@ -21,12 +21,13 @@ import static java.lang.Long.valueOf;
 
 public class ScoreActivity extends AppCompatActivity {
 
-    TextView scoreView,percentageView;
+    TextView scoreView,percentageView,attemptView;
     SharedPreferences prefs;
     private DatabaseReference mDatabase, epref, yref;
     Long correct;
     Long total;
     String percentage;
+    String attempts;
 
     public void retakeQuiz(View view){
         Intent intent=new Intent (getApplicationContext(),GameActivity.class);
@@ -52,6 +53,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         scoreView = (TextView) findViewById(R.id.textScore);
         percentageView = (TextView) findViewById(R.id.textPercentage);
+        attemptView = (TextView) findViewById(R.id.textAttempt);
         percentage="X";
 
         prefs = getSharedPreferences(
@@ -61,12 +63,15 @@ public class ScoreActivity extends AppCompatActivity {
         total = Long.valueOf(prefs.getString("Total", "Invalid"));
         String result=correct+"/"+total;
 
-        percentage = prefs.getString("Percent", "Invalid Percent");
+        percentage = prefs.getString("Percent", "Invalid percent");
+        attempts = prefs.getString("Attempts", "Invalid number of attempts");
+
 
         String episodeName = prefs.getString("episodeName", "Episode not found");
 
         scoreView.setText(result);
-        percentageView.setText("You are better than "+percentage+"% of the people");
+        percentageView.setText("You have performed better than "+percentage+"% of the people");
+        attemptView.setText("This quiz has been attempted by "+attempts+" people");
 
     }
 
