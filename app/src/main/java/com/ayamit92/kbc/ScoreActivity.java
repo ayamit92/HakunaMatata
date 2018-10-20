@@ -25,7 +25,7 @@ import static java.lang.Long.valueOf;
 
 public class ScoreActivity extends AppCompatActivity {
 
-    TextView scoreView,percentageView,attemptView;
+    TextView scoreView, percentageView, attemptView;
     SharedPreferences prefs;
     private DatabaseReference mDatabase, epref, yref;
     Long correct;
@@ -33,40 +33,78 @@ public class ScoreActivity extends AppCompatActivity {
     String percentage;
     String attempts;
     AlertDialog.Builder builder;
+    Boolean flag = false;
 
-    public void retakeQuiz(View view){
-        Intent intent=new Intent (getApplicationContext(),GameActivity.class);
-        startActivity(intent);
+//    public void retakeQuiz(View view){
+//        Intent intent=new Intent (getApplicationContext(),GameActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void episodeList(View view){
+//        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void home(View view){
+//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivity(intent);
+//    }
+
+    public void retouch(View view) {
+        if (flag == false) {
+            flag = true;
+            customDialogBuilder(view.getId());
+        } else
+            switchafterrate(view.getId());
     }
 
-    public void episodeList(View view){
-        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
-        startActivity(intent);
-    }
 
-    public void home(View view){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void customDialogBuilder()
-    {
+    public void customDialogBuilder(final int funcid) {
         builder.setMessage(R.string.rateus)
                 .setTitle(R.string.ratetitle);
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 rateus();
             }
         });
         builder.setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
+                switchafterrate(funcid);
+            }
+        });
+
+        builder.setNeutralButton(R.string.done, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                switchafterrate(funcid);
             }
         });
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void switchafterrate(int funcid) {
+        switch (funcid) {
+
+            case R.id.buttonRetake:
+                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.buttonEpisodeList:
+                Intent intent1 = new Intent(getApplicationContext(), EpisodeListActivity.class);
+                startActivity(intent1);
+                break;
+
+            case R.id.buttonHome:
+                Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent2);
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void rateus() {
@@ -91,19 +129,19 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
         builder = new AlertDialog.Builder(this);
-        customDialogBuilder();
+//        customDialogBuilder();
 
         scoreView = (TextView) findViewById(R.id.textScore);
         percentageView = (TextView) findViewById(R.id.textPercentage);
         attemptView = (TextView) findViewById(R.id.textAttempt);
-        percentage="X";
+        percentage = "X";
 
         prefs = getSharedPreferences(
                 "abc", Context.MODE_PRIVATE);
 
         correct = Long.valueOf(prefs.getString("Correct", "Invalid"));
         total = Long.valueOf(prefs.getString("Total", "Invalid"));
-        String result=correct+"/"+total;
+        String result = correct + "/" + total;
 
         percentage = prefs.getString("Percent", "Invalid percent");
         attempts = prefs.getString("Attempts", "Invalid number of attempts");
@@ -112,8 +150,8 @@ public class ScoreActivity extends AppCompatActivity {
         String episodeName = prefs.getString("episodeName", "Episode not found");
 
         scoreView.setText(result);
-        percentageView.setText("You have performed better than "+percentage+"% of the people");
-        attemptView.setText("This quiz has been attempted by "+attempts+" people");
+        percentageView.setText("You have performed better than " + percentage + "% of the people");
+        attemptView.setText("This quiz has been attempted by " + attempts + " people");
 
     }
 

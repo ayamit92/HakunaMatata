@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/toolbarpurpround40"
-            android:onClick="retakeQuiz"
+            android:onClick="retouch"
             android:text="RETAKE QUIZ"
             android:textColor="#ffffff"
             android:textSize="15sp" />
@@ -88,7 +88,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="50"
             android:background="@drawable/toolbarpurpround40"
-            android:onClick="episodeList"
+            android:onClick="retouch"
             android:text="Episode List"
             android:textColor="#ffffff"
             android:textSize="15sp" />
@@ -100,7 +100,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/toolbarpurpround40"
-            android:onClick="home"
+            android:onClick="retouch"
             android:text="Return to Home"
             android:textColor="#ffffff"
             android:textSize="15sp" />

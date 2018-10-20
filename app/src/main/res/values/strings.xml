@@ -7,8 +7,9 @@
     <string name="rate_us">Rate Us</string>
 
     <string name="ratetitle">Please Rate Us!</string>
-    <string name="rateus">Please rate us if you are liking our services</string>
-    <string name="ok">OK</string>
+    <string name="rateus">A word of appreciation can do wonders</string>
+    <string name="sure">Sure</string>
     <string name="later">LATER</string>
+    <string name="done">Already Done</string>
 
 </resources>
