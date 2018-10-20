@@ -1,8 +1,12 @@
 package com.ayamit92.kbc;
 
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +32,7 @@ public class ScoreActivity extends AppCompatActivity {
     Long total;
     String percentage;
     String attempts;
+    AlertDialog.Builder builder;
 
     public void retakeQuiz(View view){
         Intent intent=new Intent (getApplicationContext(),GameActivity.class);
@@ -44,12 +49,49 @@ public class ScoreActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void customDialogBuilder()
+    {
+        builder.setMessage(R.string.rateus)
+                .setTitle(R.string.ratetitle);
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                rateus();
+            }
+        });
+        builder.setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void rateus() {
+        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-
+        builder = new AlertDialog.Builder(this);
+        customDialogBuilder();
 
         scoreView = (TextView) findViewById(R.id.textScore);
         percentageView = (TextView) findViewById(R.id.textPercentage);

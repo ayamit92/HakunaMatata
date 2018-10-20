@@ -6,4 +6,9 @@
     <string name="question_bank">Question Bank</string>
     <string name="rate_us">Rate Us</string>
 
+    <string name="ratetitle">Please Rate Us!</string>
+    <string name="rateus">Please rate us if you are liking our services</string>
+    <string name="ok">OK</string>
+    <string name="later">LATER</string>
+
 </resources>

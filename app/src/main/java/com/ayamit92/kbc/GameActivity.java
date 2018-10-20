@@ -220,10 +220,10 @@ public class GameActivity extends AppCompatActivity {
         final Animation op3 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
         final Animation op4 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
 
-        op1.setStartOffset(2500);
-        op2.setStartOffset(4000);
-        op3.setStartOffset(5500);
-        op4.setStartOffset(7000);
+//        op1.setStartOffset(2000);
+//        op2.setStartOffset(3500);
+//        op3.setStartOffset(5000);
+//        op4.setStartOffset(6500);
 
         //ques.startAnimation(q);
         optiona.startAnimation(op1);
