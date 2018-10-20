@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     Button qBankButton;
     private DatabaseReference mDatabase, epref, yref;
+    private Boolean exit = false;
 
     static ArrayList<String> episodeList = new ArrayList<String>();
     static HashMap<String, ArrayList<Question>> episodeQuestionMap = new HashMap<String, ArrayList<Question>>();
@@ -192,6 +195,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
     }
 
 }
