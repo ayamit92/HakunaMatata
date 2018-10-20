@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     Button qBankButton;
     private DatabaseReference mDatabase, epref, yref;
-    private Boolean exit = false;
+    private static boolean RUN_ONCE = true;
 
     static ArrayList<String> episodeList = new ArrayList<String>();
     static HashMap<String, ArrayList<Question>> episodeQuestionMap = new HashMap<String, ArrayList<Question>>();
@@ -130,15 +130,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-//        qBankButton = (Button) findViewById(R.id.button3);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         epref = mDatabase.child("2018");
-        epref.addListenerForSingleValueEvent(episodeList());
 
-        MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
-        ring.start();
+        runOnce();
+    }
 
+
+    private void runOnce() {
+        if (RUN_ONCE) {
+            RUN_ONCE = false;
+
+            epref.addListenerForSingleValueEvent(episodeList());
+
+            MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
+            ring.start();
+        }
     }
 
     //    populating app bar with different options
