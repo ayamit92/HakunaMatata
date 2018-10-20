@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,7 +29,6 @@ public class YearListActivity extends AppCompatActivity {
     static ArrayList<String> yearList = new ArrayList<String>();
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-
 
     public void selectyear(View view) {
 
@@ -65,5 +67,6 @@ public class YearListActivity extends AppCompatActivity {
             prefs = getSharedPreferences(
                     "abc", Context.MODE_PRIVATE);
             editor = prefs.edit();
+
         }
     }

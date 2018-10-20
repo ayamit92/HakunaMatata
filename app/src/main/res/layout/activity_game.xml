@@ -80,15 +80,15 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_below="@+id/options"
-        android:layout_marginTop="20dp"
-        android:text=""
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textSize="20sp"/>
+    <!--<TextView-->
+        <!--android:id="@+id/textView3"-->
+        <!--android:layout_below="@+id/options"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:text=""-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:textSize="20sp"/>-->
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"

@@ -6,9 +6,16 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +39,7 @@ import static java.lang.Long.valueOf;
 public class GameActivity extends AppCompatActivity {
 
     Button next, optiona, optionb, optionc, optiond;
+    LinearLayout ques;
     TextView question, answer;
     int count = 0;
     int correct = 0;
@@ -176,11 +184,17 @@ public class GameActivity extends AppCompatActivity {
             clicked = true;
 
             if (flag == true) {
-                answer.setText("Right Answer");
+//                answer.setText("Right Answer");
                 correct++;
             } else {
-                answer.setText("Wrong Answer");
+//                answer.setText("Wrong Answer");
             }
+
+//            final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.nextanim);
+//            MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+//            myAnim.setInterpolator(interpolator);
+//            next.startAnimation(myAnim);
+            next.setTextSize(TypedValue.COMPLEX_UNIT_SP,25);
         }
 
     }
@@ -191,13 +205,33 @@ public class GameActivity extends AppCompatActivity {
         optionc.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionC());
         optiond.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionD());
         question.setText(Integer.toString(count + 1) + ". " + MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
-        answer.setText("");
+//        answer.setText("");
 
-        //optiona.setBackgroundColor(0xFFD3D3D3);
         optiona.setBackgroundResource(R.drawable.toolbarpurpround40);
         optionb.setBackgroundResource(R.drawable.toolbarpurpround40);
         optionc.setBackgroundResource(R.drawable.toolbarpurpround40);
         optiond.setBackgroundResource(R.drawable.toolbarpurpround40);
+
+        next.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+
+//        final Animation q = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+        final Animation op1 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+        final Animation op2 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+        final Animation op3 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+        final Animation op4 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+
+        op1.setStartOffset(2500);
+        op2.setStartOffset(4000);
+        op3.setStartOffset(5500);
+        op4.setStartOffset(7000);
+
+        //ques.startAnimation(q);
+        optiona.startAnimation(op1);
+        optionb.startAnimation(op2);
+        optionc.startAnimation(op3);
+        optiond.startAnimation(op4);
+
+//        myAnim.setAnimationListener(anim(myAnim,optionb));
     }
 
     public void highlightcorrect() {
@@ -227,6 +261,26 @@ public class GameActivity extends AppCompatActivity {
         return nextEventListener;
     }
 
+//    public Animation.AnimationListener anim(final Animation myAnim, final Button button) {
+//        Animation.AnimationListener animationListener = new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//                button.startAnimation(myAnim);
+//            }
+//        };
+//        return animationListener;
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -247,7 +301,9 @@ public class GameActivity extends AppCompatActivity {
         optiond = (Button) findViewById(R.id.button7);
 
         question = (TextView) findViewById(R.id.textView);
-        answer = (TextView) findViewById(R.id.textView3);
+//        answer = (TextView) findViewById(R.id.textView3);
+        ques=findViewById(R.id.kb);
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         prefs = getSharedPreferences(
