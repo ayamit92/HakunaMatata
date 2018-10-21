@@ -1,4 +1,4 @@
-package com.ayamit92.kbc;
+package com.balli.kbc;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;

@@ -1,4 +1,4 @@
-package com.ayamit92.kbc;
+package com.balli.kbc;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

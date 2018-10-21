@@ -1,4 +1,4 @@
-package com.ayamit92.kbc;
+package com.balli.kbc;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
