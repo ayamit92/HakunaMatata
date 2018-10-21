@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
 
     Button next, optiona, optionb, optionc, optiond;
     LinearLayout ques;
-    TextView question, answer;
+    TextView question, questionNumber;
     int count = 0;
     int correct = 0;
     int episodelistid;
@@ -204,8 +204,8 @@ public class GameActivity extends AppCompatActivity {
         optionb.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionB());
         optionc.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionC());
         optiond.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionD());
-        question.setText(Integer.toString(count + 1) + ". " + MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
-//        answer.setText("");
+        question.setText(Integer.toString(count + 1) + ". "+ MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
+        questionNumber.setText("["+Integer.toString(count + 1) + "/"+MainActivity.episodeQuestionMap.get(episodeName).size()+"]");
 
         optiona.setBackgroundResource(R.drawable.toolbarpurpround40);
         optionb.setBackgroundResource(R.drawable.toolbarpurpround40);
@@ -281,7 +281,7 @@ public class GameActivity extends AppCompatActivity {
         optiond = (Button) findViewById(R.id.button7);
 
         question = (TextView) findViewById(R.id.textView);
-//        answer = (TextView) findViewById(R.id.textView3);
+        questionNumber = (TextView) findViewById(R.id.textQuestionNumber);
         ques=findViewById(R.id.kb);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
