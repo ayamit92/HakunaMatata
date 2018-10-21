@@ -55,6 +55,7 @@ public class GameActivity extends AppCompatActivity {
     long score = 1;
     long scorePlus = 0;
     private static DecimalFormat df2 = new DecimalFormat(".##");
+    private static boolean interstitialad;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -73,59 +74,54 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please select an option!", Toast.LENGTH_SHORT).show();
             }
         } else {
+            if (interstitialad == false) {
+                interstitialad = true;
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.i("TAG", "The interstitial wasn't loaded yet.");
+                }
 
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            } else {
-                Log.i("TAG", "The interstitial wasn't loaded yet.");
+                editor.putString("Correct", String.valueOf(correct)).apply();
+                editor.putString("Total", String.valueOf(count + 1)).apply();
+                editor.commit();
+
+                if (submissionsMap.get(correct) != null)
+                    currentCount = submissionsMap.get(correct);
+                else
+                    currentCount = 0;
+
+                for (Map.Entry<Integer, Long> entry : submissionsMap.entrySet()) {
+                    score = score + entry.getValue();
+                    if (entry.getKey() < correct)
+                        scorePlus = scorePlus + entry.getValue();
+                }
+
+
+                Log.i("score", String.valueOf(score));
+                Log.i("scorePlus", String.valueOf(scorePlus));
+
+                percentage = ((double) scorePlus / score) * 100;
+                Log.i("percentage1", String.valueOf(df2.format(percentage)));
+                if (correct == 0)
+                    editor.putString("Percent", "0").apply();
+                else
+                    editor.putString("Percent", String.valueOf(df2.format(percentage))).apply();
+                editor.putString("Attempts", String.valueOf(score)).apply();
+                editor.commit();
+
+                Log.i("currentCount", String.valueOf(currentCount));
+                mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
             }
-
-            editor.putString("Correct", String.valueOf(correct)).apply();
-            editor.putString("Total", String.valueOf(count + 1)).apply();
-            editor.commit();
-
-            if (submissionsMap.get(correct) != null)
-                currentCount = submissionsMap.get(correct);
-            else
-                currentCount = 0;
-
-            for (Map.Entry<Integer, Long> entry : submissionsMap.entrySet()) {
-                score = score + entry.getValue();
-                if (entry.getKey() < correct)
-                    scorePlus = scorePlus + entry.getValue();
-            }
-
-
-            Log.i("score", String.valueOf(score));
-            Log.i("scorePlus", String.valueOf(scorePlus));
-
-            percentage = ((double) scorePlus / score) * 100;
-            Log.i("percentage1", String.valueOf(df2.format(percentage)));
-            if (correct == 0)
-                editor.putString("Percent", "0").apply();
-            else
-                editor.putString("Percent", String.valueOf(df2.format(percentage))).apply();
-            editor.putString("Attempts", String.valueOf(score)).apply();
-            editor.commit();
-
-            Log.i("currentCount", String.valueOf(currentCount));
-            mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
-
 // Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on
 // game screen and we would have switched to score screen
 //            Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
 //            startActivity(intent);
 
-            final Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 5000L);
+            else {
+                Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+                startActivity(intent);
+            }
 
         }
     }
@@ -194,7 +190,7 @@ public class GameActivity extends AppCompatActivity {
 //            MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
 //            myAnim.setInterpolator(interpolator);
 //            next.startAnimation(myAnim);
-            next.setTextSize(TypedValue.COMPLEX_UNIT_SP,25);
+            next.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
         }
 
     }
@@ -204,15 +200,15 @@ public class GameActivity extends AppCompatActivity {
         optionb.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionB());
         optionc.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionC());
         optiond.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionD());
-        question.setText(Integer.toString(count + 1) + ". "+ MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
-        questionNumber.setText("["+Integer.toString(count + 1) + "/"+MainActivity.episodeQuestionMap.get(episodeName).size()+"]");
+        question.setText(Integer.toString(count + 1) + ". " + MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
+        questionNumber.setText("[" + Integer.toString(count + 1) + "/" + MainActivity.episodeQuestionMap.get(episodeName).size() + "]");
 
         optiona.setBackgroundResource(R.drawable.toolbarpurpround40);
         optionb.setBackgroundResource(R.drawable.toolbarpurpround40);
         optionc.setBackgroundResource(R.drawable.toolbarpurpround40);
         optiond.setBackgroundResource(R.drawable.toolbarpurpround40);
 
-        next.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+        next.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 
 //        final Animation q = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
         final Animation op1 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
@@ -220,10 +216,10 @@ public class GameActivity extends AppCompatActivity {
         final Animation op3 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
         final Animation op4 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
 
-        op1.setStartOffset(2000);
-        op2.setStartOffset(3500);
-        op3.setStartOffset(5000);
-        op4.setStartOffset(6500);
+        op1.setStartOffset(500);
+        op2.setStartOffset(1000);
+        op3.setStartOffset(1500);
+        op4.setStartOffset(2000);
 
         //ques.startAnimation(q);
         optiona.startAnimation(op1);
@@ -269,10 +265,14 @@ public class GameActivity extends AppCompatActivity {
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
+//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        interstitialad = false;
 
         next = (Button) findViewById(R.id.button9);
         optiona = (Button) findViewById(R.id.button4);
@@ -282,7 +282,7 @@ public class GameActivity extends AppCompatActivity {
 
         question = (TextView) findViewById(R.id.textView);
         questionNumber = (TextView) findViewById(R.id.textQuestionNumber);
-        ques=findViewById(R.id.kb);
+        ques = findViewById(R.id.kb);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 

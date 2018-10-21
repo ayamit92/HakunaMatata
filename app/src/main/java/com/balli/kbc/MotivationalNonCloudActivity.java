@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MotivationalNonCloudActivity extends AppCompatActivity {
 
@@ -17,18 +18,21 @@ public class MotivationalNonCloudActivity extends AppCompatActivity {
                 stopPlaying();
                 mp = MediaPlayer.create(MotivationalNonCloudActivity.this, R.raw.tuchal);
                 mp.start();
+                Toast.makeText(getApplicationContext(), "Starting audio", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.buttonKoshish:
                 stopPlaying();
                 mp = MediaPlayer.create(MotivationalNonCloudActivity.this, R.raw.koshish);
                 mp.start();
+                Toast.makeText(getApplicationContext(), "Starting audio", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.buttonBelieve:
                 stopPlaying();
                 mp = MediaPlayer.create(MotivationalNonCloudActivity.this, R.raw.believe);
                 mp.start();
+                Toast.makeText(getApplicationContext(), "Starting audio", Toast.LENGTH_SHORT).show();
                 break;
 
             default:

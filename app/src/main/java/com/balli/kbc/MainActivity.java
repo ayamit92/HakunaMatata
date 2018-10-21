@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this, "ca-app-pub-9621990942730139~3204585053");
+        //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         epref = mDatabase.child("2018");
