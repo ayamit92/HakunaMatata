@@ -7,76 +7,91 @@
     android:background="@drawable/toolbarblue"
     tools:context=".GameActivity">
 
-        <LinearLayout
-            android:id="@+id/kb"
-            android:background="@drawable/toolbarpurpround40"
-            android:layout_height="170dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent">
+    <LinearLayout
+        android:id="@+id/kb"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/toolbarpurpround40">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:text="Question"
-            android:textAlignment="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:text="Question"
+            android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="18sp" />
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/kb"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/kb"
-        android:orientation="vertical" >
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button4"
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toolbarpurpround40"
+            android:onClick="response"
+            android:text="optionA"
+            android:layout_marginRight="10dp"
+            android:layout_weight="50"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toolbarpurpround40"
+            android:onClick="response"
+            android:text="optionB"
+            android:layout_weight="50"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/options1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="response"
-        android:background="@drawable/toolbarpurpround40"
-        android:textColor="#ffffff"
-        android:text="optionA" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/options"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="response"
-        android:layout_marginTop="10dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/toolbarpurpround40"
-        android:text="optionB" />
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/toolbarpurpround40"
+            android:onClick="response"
+            android:text="optionC"
+            android:layout_weight="50"
+            android:textColor="#ffffff" />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="response"
-        android:layout_marginTop="10dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/toolbarpurpround40"
-        android:text="optionC" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="response"
-        android:layout_marginTop="10dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/toolbarpurpround40"
-        android:text="optionD" />
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/toolbarpurpround40"
+            android:onClick="response"
+            android:text="optionD"
+            android:layout_weight="50"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -84,36 +99,24 @@
         android:id="@+id/textQuestionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QuestionNumber"
-        android:textAlignment="center"
+        android:layout_below="@+id/options1"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:text="QuestionNumber"
+        android:textAlignment="center"
         android:textColor="#ffffff"
-        android:layout_below="@+id/options"
         android:textSize="15sp" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView3"-->
-        <!--android:layout_below="@+id/options"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:textSize="20sp"/>-->
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_above="@id/nexgen"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-9621990942730139/9048347794">
-    </com.google.android.gms.ads.AdView>
+        android:layout_centerHorizontal="true"
+        ads:adSize="LARGE_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
 
     <LinearLayout
         android:id="@+id/nexgen"
@@ -121,15 +124,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="nextfun"
-        android:layout_weight="100"
-        android:textColor="#ffffff"
-        android:background="@drawable/toolbarpurpregular"
-        android:text="NEXT" />
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:background="@drawable/toolbarpurpregular"
+            android:onClick="nextfun"
+            android:text="NEXT"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
 </RelativeLayout>

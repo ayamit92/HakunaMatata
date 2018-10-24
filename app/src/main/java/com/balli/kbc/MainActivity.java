@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -210,5 +211,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         this.finishAffinity();
     }
-
 }

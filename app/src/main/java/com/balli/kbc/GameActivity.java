@@ -75,9 +75,9 @@ public class GameActivity extends AppCompatActivity {
             }
         } else {
             if (interstitialad == false) {
-                interstitialad = true;
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
+                    interstitialad = true;
                 } else {
                     Log.i("TAG", "The interstitial wasn't loaded yet.");
                 }
@@ -212,14 +212,14 @@ public class GameActivity extends AppCompatActivity {
 
 //        final Animation q = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
         final Animation op1 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
-        final Animation op2 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+        final Animation op2 = AnimationUtils.loadAnimation(this, R.anim.buttonanim2);
         final Animation op3 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
-        final Animation op4 = AnimationUtils.loadAnimation(this, R.anim.buttonanim);
+        final Animation op4 = AnimationUtils.loadAnimation(this, R.anim.buttonanim2);
 
         op1.setStartOffset(500);
-        op2.setStartOffset(1000);
-        op3.setStartOffset(1500);
-        op4.setStartOffset(2000);
+        op2.setStartOffset(500);
+        op3.setStartOffset(500);
+        op4.setStartOffset(500);
 
         //ques.startAnimation(q);
         optiona.startAnimation(op1);
@@ -262,17 +262,24 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        mAdView = (AdView) findViewById(R.id.adView);
+        interstitialad = false;
+
+        mAdView = (AdView) findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+//        production ad
+//        ads:adUnitId="ca-app-pub-9621990942730139/5905488750"
+//        test ad
 //        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
-//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+//        production ad
+//        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
+//        test add
+//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
-        interstitialad = false;
 
         next = (Button) findViewById(R.id.button9);
         optiona = (Button) findViewById(R.id.button4);

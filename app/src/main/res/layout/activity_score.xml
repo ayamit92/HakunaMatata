@@ -8,29 +8,30 @@
     tools:context=".ScoreActivity">
 
     <RelativeLayout
+        android:id="@+id/linmain"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/toolbarpurpround25">
 
         <TextView
             android:id="@+id/textFixed"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:text="Score"
             android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:textColor="#ffffff"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textScore"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_below="@id/textFixed"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="24/30"
             android:textAlignment="center"
             android:textColor="#ffffff"
@@ -43,7 +44,7 @@
             android:layout_below="@+id/textScore"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:text="You are the Batman"
             android:textAlignment="center"
             android:textColor="#ffffff"
@@ -68,7 +69,8 @@
         android:id="@+id/bb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/adView3"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <Button
@@ -105,5 +107,14 @@
             android:textColor="#ffffff"
             android:textSize="15sp" />
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

@@ -138,6 +138,11 @@ public class ScoreActivity extends AppCompatActivity {
         percentageView.setText("You have performed better than " + percentage + "% of the people");
         attemptView.setText("This quiz has been attempted by " + attempts + " people");
 
+//        production ad
+//        ads:adUnitId="ca-app-pub-9621990942730139/9048347794"
+//        test ad
+//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+
     }
 
     @Override
