@@ -38,10 +38,20 @@ public class YearListActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.year_view1: {
-                Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
-                editor.putInt("year", 2018).apply();
-                editor.commit();
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Downloading the list of episodes for 2018", Toast.LENGTH_SHORT).show();
+                final Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
+                        editor.putInt("year", 2018).apply();
+                        editor.commit();
+                        startActivity(intent);
+                    }
+
+                }, 1000L);
             }
             break;
 
@@ -71,7 +81,7 @@ public class YearListActivity extends AppCompatActivity {
                 "abc", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        mAdView = (AdView) findViewById(R.id.adView3);
+        mAdView = (AdView) findViewById(R.id.adView1);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 //        production ad
