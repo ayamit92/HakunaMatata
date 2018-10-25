@@ -31,29 +31,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             manager.createNotificationChannel(channel);
         }
         manager.notify(0, builder.build());
-
-//        super.onMessageReceived(remoteMessage);
-//
-//        Log.d("Msg", "Message received ["+remoteMessage+"]");
-//
-//        // Create Notification
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1410,
-//                intent, PendingIntent.FLAG_ONE_SHOT);
-//
-//        NotificationCompat.Builder notificationBuilder = new
-//                NotificationCompat.Builder(this)
-//                .setSmallIcon(R.drawable.ic_baseline_menu_24px)
-//                .setContentTitle("Message")
-//                .setContentText(remoteMessage.getNotification().getBody())
-//                .setAutoCancel(true)
-//                .setContentIntent(pendingIntent);
-//
-//        NotificationManager notificationManager =
-//                (NotificationManager)
-//                        getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//        notificationManager.notify(1410, notificationBuilder.build());
     }
     }

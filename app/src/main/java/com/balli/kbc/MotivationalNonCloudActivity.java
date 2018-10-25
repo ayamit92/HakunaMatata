@@ -83,7 +83,7 @@ public class MotivationalNonCloudActivity extends AppCompatActivity {
 //        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/9281217864");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 //        production ad
 //        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/9281217864");
