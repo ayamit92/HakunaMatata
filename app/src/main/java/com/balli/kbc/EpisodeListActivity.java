@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,15 +32,15 @@ public class EpisodeListActivity extends AppCompatActivity {
     ArrayList<String> epsLst = new ArrayList<String>();
 
     public void token() {
-//        String tkn = FirebaseInstanceId.getInstance().getToken();
+        String tkn = FirebaseInstanceId.getInstance().getToken();
 //        Toast.makeText(MainActivity.this, "Current token ["+tkn+"]",
 //                Toast.LENGTH_LONG).show();
-//        Log.i("zoobie", "Token ["+tkn+"]");
+        Log.i("zoobie", "Token ["+tkn+"]");
         FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
         //below step is not mandate, just kept to keep track of devices opening app
         //topic is automatically created when subscribed to it,
         // topic is not a part of database, so can't be seen there
-//        mDatabase.child("token").child("allDevices").child(tkn).setValue(tkn);
+        mDatabase.child("token").child("allDevices").child(tkn).setValue(tkn);
     }
 
     @Override
