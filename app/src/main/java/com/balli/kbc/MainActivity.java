@@ -123,18 +123,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void token() {
-        String tkn = FirebaseInstanceId.getInstance().getToken();
-//        Toast.makeText(MainActivity.this, "Current token ["+tkn+"]",
-//                Toast.LENGTH_LONG).show();
-        Log.i("zoobie", "Token ["+tkn+"]");
-        FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
-        //below step is not mandate, just kept to keep track of devices opening app
-        //topic is automatically created when subscribed to it,
-        // topic is not a part of database, so can't be seen there
-        mDatabase.child("token").child("allDevices").child(tkn).setValue(tkn);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         epref = mDatabase.child("2018");
 
         runOnce();
-        token();
     }
 
 
