@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import static java.lang.Long.valueOf;
 
@@ -110,6 +112,23 @@ public class ScoreActivity extends AppCompatActivity {
         }
     }
 
+    public void token() {
+        String tkn="aaa";
+
+        if (FirebaseInstanceId.getInstance().getToken()!=null){
+            tkn = FirebaseInstanceId.getInstance().getToken();
+            FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
+        }
+//        Toast.makeText(MainActivity.this, "Current token ["+tkn+"]",
+//        Toast.LENGTH_LONG).show();
+        Log.i("zoobie", "Token ["+tkn+"]");
+
+        //below step is not mandate, just kept to keep track of devices opening app
+        //topic is automatically created when subscribed to it,
+        // topic is not a part of database, so can't be seen there
+        mDatabase.child("token").child("allDevices").child(tkn).setValue(tkn);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +136,9 @@ public class ScoreActivity extends AppCompatActivity {
 
         builder = new AlertDialog.Builder(this);
 //        customDialogBuilder();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        token();
 
         scoreView = (TextView) findViewById(R.id.textScore);
         percentageView = (TextView) findViewById(R.id.textPercentage);

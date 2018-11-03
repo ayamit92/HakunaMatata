@@ -12,11 +12,13 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
     @Override
     public void onTokenRefresh() {
         // Get updated InstanceID token.
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.i(TAG, "Refreshed token: " + refreshedToken);
-
-        sendRegistrationToServer(refreshedToken);
-        FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
+        String refreshedToken="bbb";
+        if (FirebaseInstanceId.getInstance().getToken()!=null){
+            refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            Log.i(TAG, "Refreshed token: " + refreshedToken);
+            sendRegistrationToServer(refreshedToken);
+            FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
+        }
     }
 
     /**
