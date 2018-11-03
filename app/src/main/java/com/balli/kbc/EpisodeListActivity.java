@@ -31,16 +31,20 @@ public class EpisodeListActivity extends AppCompatActivity {
 
     ArrayList<String> epsLst = new ArrayList<String>();
 
-    public void token() {
-        String tkn="aaa";
+    int year;
 
-        if (FirebaseInstanceId.getInstance().getToken()!=null){
+    boolean emptylist = false;
+
+    public void token() {
+        String tkn = "aaa";
+
+        if (FirebaseInstanceId.getInstance().getToken() != null) {
             tkn = FirebaseInstanceId.getInstance().getToken();
             FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
         }
 //        Toast.makeText(MainActivity.this, "Current token ["+tkn+"]",
 //        Toast.LENGTH_LONG).show();
-        Log.i("zoobie", "Token ["+tkn+"]");
+        Log.i("zoobie", "Token [" + tkn + "]");
 
         //below step is not mandate, just kept to keep track of devices opening app
         //topic is automatically created when subscribed to it,
@@ -56,21 +60,39 @@ public class EpisodeListActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         epsLst.clear();
         token();
-        ListView listView=(ListView) findViewById(R.id.episodelist);
+        ListView listView = (ListView) findViewById(R.id.episodelist);
 
         prefs = getSharedPreferences(
                 "abc", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        if (MainActivity.episodeList.size()==0)
+        year = prefs.getInt("year", -1);
+
+        if (year == 2018) {
+            epsLst = MainActivity.episodeList2018;
+        }
+
+        if (year == 2017) {
+            epsLst = MainActivity.episodeList2017;
+        }
+
+        if (year == 2014) {
+            epsLst = MainActivity.episodeList2014;
+        }
+
+        if (year == 2013) {
+            epsLst = MainActivity.episodeList2013;
+        }
+
+        if (epsLst.size() == 0) {
             epsLst.add("Internet seems to be slow or off, try coming back!");
-        else
-            epsLst=MainActivity.episodeList;
+            emptylist = true;
+        }
 
         //default color in list view for text is black, changing it to white
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,epsLst){
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, epsLst) {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent){
+            public View getView(int position, View convertView, ViewGroup parent) {
                 // Get the Item from ListView
                 View view = super.getView(position, convertView, parent);
 
@@ -83,21 +105,22 @@ public class EpisodeListActivity extends AppCompatActivity {
                 // Generate ListView Item using TextView
                 return view;
             }
-        };;
+        };
+        ;
 
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                if (MainActivity.episodeList.size()!=0){
-                Intent intent=new Intent (getApplicationContext(),GameActivity.class);
-                //intent.putExtra("episodeNumber",i);
-                editor.putInt("episodeNumber", i).apply();
-                editor.commit();
-                startActivity(intent);}
-                else{
-                    Intent intent=new Intent (getApplicationContext(),MainActivity.class);
+                if (!emptylist) {
+                    Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                    //intent.putExtra("episodeNumber",i);
+                    editor.putInt("episodeNumber", i).apply();
+                    editor.commit();
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
             }

@@ -39,37 +39,43 @@ public class YearListActivity extends AppCompatActivity {
 
             case R.id.year_view1: {
                 Toast.makeText(getApplicationContext(), "Downloading the list of episodes for 2018", Toast.LENGTH_SHORT).show();
-                final Handler mHandler = new Handler();
-                mHandler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
-                        editor.putInt("year", 2018).apply();
-                        editor.commit();
-                        startActivity(intent);
-                    }
-
-                }, 1000L);
+                editor.putInt("year", 2018).apply();
+                editor.commit();
             }
             break;
 
             case R.id.year_view2:
-                Toast.makeText(getApplicationContext(), "Coming soon, 2017", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Downloading the list of episodes for 2017", Toast.LENGTH_SHORT).show();
+                editor.putInt("year", 2017).apply();
+                editor.commit();
                 break;
 
             case R.id.year_view3:
-                Toast.makeText(getApplicationContext(), "Coming soon, 2014", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Downloading the list of episodes for 2014", Toast.LENGTH_SHORT).show();
+                editor.putInt("year", 2014).apply();
+                editor.commit();
                 break;
 
             case R.id.year_view4:
-                Toast.makeText(getApplicationContext(), "Coming soon, 2013", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Downloading the list of episodes for 2013", Toast.LENGTH_SHORT).show();
+                editor.putInt("year", 2013).apply();
+                editor.commit();
                 break;
 
             default:
                 break;
         }
+
+        final Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
+                startActivity(intent);
+            }
+
+        }, 1000L);
     }
 
     @Override

@@ -43,7 +43,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static ArrayList<String> episodeList = new ArrayList<String>();
     static HashMap<String, ArrayList<Question>> episodeQuestionMap = new HashMap<String, ArrayList<Question>>();
 
-    public ValueEventListener episodeList() {
+    static ArrayList<String> episodeList2018 = new ArrayList<String>();
+    static HashMap<String, ArrayList<Question>> episodeQuestionMap2018 = new HashMap<String, ArrayList<Question>>();
+    static ArrayList<String> episodeList2017 = new ArrayList<String>();
+    static HashMap<String, ArrayList<Question>> episodeQuestionMap2017 = new HashMap<String, ArrayList<Question>>();
+    static ArrayList<String> episodeList2014 = new ArrayList<String>();
+    static HashMap<String, ArrayList<Question>> episodeQuestionMap2014 = new HashMap<String, ArrayList<Question>>();
+    static ArrayList<String> episodeList2013 = new ArrayList<String>();
+    static HashMap<String, ArrayList<Question>> episodeQuestionMap2013 = new HashMap<String, ArrayList<Question>>();
+
+    public ValueEventListener episodeList(final String year) {
         ValueEventListener nextEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -55,9 +64,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     episodeList.add(episodeName);
                     Log.i("episodeName", episodeName);
                     //above, key is retrieved and not value
-                    yref = mDatabase.child("2018").child(episodeName);
+                    yref = mDatabase.child(year).child(episodeName);
                     yref.addListenerForSingleValueEvent(questionList(episodeName));
                 }
+
+                if (year.equals("2018")){
+                    episodeList2018=episodeList;
+                    episodeQuestionMap2018=episodeQuestionMap;}
+
+                if (year.equals("2017")){
+                    episodeList2017=episodeList;
+                    episodeQuestionMap2017=episodeQuestionMap;}
+
+                if (year.equals("2014")){
+                    episodeList2014=episodeList;
+                    episodeQuestionMap2014=episodeQuestionMap;}
+
+                if (year.equals("2013")){
+                    episodeList2013=episodeList;
+                    episodeQuestionMap2013=episodeQuestionMap;}
             }
 
             @Override
@@ -136,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        epref = mDatabase.child("2018");
 
         runOnce();
         //test
@@ -147,7 +171,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (RUN_ONCE) {
             RUN_ONCE = false;
 
-            epref.addListenerForSingleValueEvent(episodeList());
+            episodeList2018.clear();
+            episodeQuestionMap2018.clear();
+            episodeList2017.clear();
+            episodeQuestionMap2017.clear();
+            episodeList2014.clear();
+            episodeQuestionMap2014.clear();
+            episodeList2013.clear();
+            episodeQuestionMap2013.clear();
+
+            epref = mDatabase.child("2018");
+            epref.addListenerForSingleValueEvent(episodeList("2018"));
+
+            epref = mDatabase.child("2017");
+            epref.addListenerForSingleValueEvent(episodeList("2017"));
+
+            epref = mDatabase.child("2014");
+            epref.addListenerForSingleValueEvent(episodeList("2014"));
+
+            epref = mDatabase.child("2013");
+            epref.addListenerForSingleValueEvent(episodeList("2013"));
 
             MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
             ring.start();

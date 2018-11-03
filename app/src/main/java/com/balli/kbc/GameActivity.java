@@ -63,9 +63,14 @@ public class GameActivity extends AppCompatActivity {
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
+    String year;
+
+    ArrayList<String> epsLstDynamic = new ArrayList<String>();
+    static HashMap<String, ArrayList<Question>> episodeQuestionMapDynamic = new HashMap<String, ArrayList<Question>>();
+
     public void nextfun(View view) {
 
-        if (count < MainActivity.episodeQuestionMap.get(episodeName).size() - 1) {
+        if (count < episodeQuestionMapDynamic.get(episodeName).size() - 1) {
             if (clicked) {
                 setValues(++count);
                 clicked = false;
@@ -75,9 +80,9 @@ public class GameActivity extends AppCompatActivity {
             }
         } else {
             if (interstitialad == false) {
+                interstitialad = true;
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
-                    interstitialad = true;
                 } else {
                     Log.i("TAG", "The interstitial wasn't loaded yet.");
                 }
@@ -111,7 +116,7 @@ public class GameActivity extends AppCompatActivity {
                 editor.commit();
 
                 Log.i("currentCount", String.valueOf(currentCount));
-                mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
+                mDatabase.child("submissions").child(year).child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
             }
 // Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on
 // game screen and we would have switched to score screen
@@ -134,7 +139,7 @@ public class GameActivity extends AppCompatActivity {
             switch (view.getId()) {
 
                 case R.id.button4:
-                    if (((String) optiona.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
+                    if (((String) optiona.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer())) {
                         optiona.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
@@ -144,7 +149,7 @@ public class GameActivity extends AppCompatActivity {
                     break;
 
                 case R.id.button5:
-                    if (((String) optionb.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
+                    if (((String) optionb.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer())) {
                         optionb.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
@@ -154,7 +159,7 @@ public class GameActivity extends AppCompatActivity {
                     break;
 
                 case R.id.button6:
-                    if (((String) optionc.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
+                    if (((String) optionc.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer())) {
                         optionc.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
@@ -164,7 +169,7 @@ public class GameActivity extends AppCompatActivity {
                     break;
 
                 case R.id.button7:
-                    if (((String) optiond.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer())) {
+                    if (((String) optiond.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer())) {
                         optiond.setBackgroundResource(R.drawable.angrytoolbackground4);
                         flag = true;
                     } else {
@@ -196,12 +201,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setValues(int count) {
-        optiona.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionA());
-        optionb.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionB());
-        optionc.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionC());
-        optiond.setText(MainActivity.episodeQuestionMap.get(episodeName).get(count).getOptionD());
-        question.setText(Integer.toString(count + 1) + ". " + MainActivity.episodeQuestionMap.get(episodeName).get(count).getQuestion());
-        questionNumber.setText("[" + Integer.toString(count + 1) + "/" + MainActivity.episodeQuestionMap.get(episodeName).size() + "]");
+        optiona.setText(episodeQuestionMapDynamic.get(episodeName).get(count).getOptionA());
+        optionb.setText(episodeQuestionMapDynamic.get(episodeName).get(count).getOptionB());
+        optionc.setText(episodeQuestionMapDynamic.get(episodeName).get(count).getOptionC());
+        optiond.setText(episodeQuestionMapDynamic.get(episodeName).get(count).getOptionD());
+        question.setText(Integer.toString(count + 1) + ". " + episodeQuestionMapDynamic.get(episodeName).get(count).getQuestion());
+        questionNumber.setText("[" + Integer.toString(count + 1) + "/" + episodeQuestionMapDynamic.get(episodeName).size() + "]");
 
         optiona.setBackgroundResource(R.drawable.toolbarpurpround40);
         optionb.setBackgroundResource(R.drawable.toolbarpurpround40);
@@ -231,13 +236,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void highlightcorrect() {
-        if (((String) optiona.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
+        if (((String) optiona.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer()))
             optiona.setBackgroundResource(R.drawable.angrytoolbackground4);
-        if (((String) optionb.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
+        if (((String) optionb.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer()))
             optionb.setBackgroundResource(R.drawable.angrytoolbackground4);
-        if (((String) optionc.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
+        if (((String) optionc.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer()))
             optionc.setBackgroundResource(R.drawable.angrytoolbackground4);
-        if (((String) optiond.getText()).equals(MainActivity.episodeQuestionMap.get(episodeName).get(count).getAnswer()))
+        if (((String) optiond.getText()).equals(episodeQuestionMapDynamic.get(episodeName).get(count).getAnswer()))
             optiond.setBackgroundResource(R.drawable.angrytoolbackground4);
     }
 
@@ -300,17 +305,38 @@ public class GameActivity extends AppCompatActivity {
         submissionsMap.clear();
 
         episodelistid = prefs.getInt("episodeNumber", -1);
+        year = Integer.toString(prefs.getInt("year", -1));
+
+        if (year == "2018") {
+            epsLstDynamic = MainActivity.episodeList2018;
+            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2018;
+        }
+
+        if (year == "2017") {
+            epsLstDynamic = MainActivity.episodeList2017;
+            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2017;
+        }
+
+        if (year == "2014") {
+            epsLstDynamic = MainActivity.episodeList2014;
+            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2014;
+        }
+
+        if (year == "2013") {
+            epsLstDynamic = MainActivity.episodeList2013;
+            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2013;
+        }
 
         if (episodelistid != -1) {
-            episodeName = MainActivity.episodeList.get(episodelistid);
+            episodeName = epsLstDynamic.get(episodelistid);
             editor.putString("episodeName", episodeName).apply();
             editor.commit();
         }
 
-        epref = mDatabase.child("submissions").child("2018").child(episodeName);
+        epref = mDatabase.child("submissions").child(year).child(episodeName);
         epref.addListenerForSingleValueEvent(scoreList());
 
-        if (MainActivity.episodeQuestionMap.get(episodeName).size() == 0) {
+        if (episodeQuestionMapDynamic.get(episodeName).size() == 0) {
             Toast.makeText(getApplicationContext(), "Try reloading the episode", Toast.LENGTH_LONG).show();
         } else {
             setValues(count);
