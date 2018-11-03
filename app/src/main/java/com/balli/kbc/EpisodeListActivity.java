@@ -70,18 +70,22 @@ public class EpisodeListActivity extends AppCompatActivity {
 
         if (year == 2018) {
             epsLst = MainActivity.episodeList2018;
+            Log.i("episodeact2018",epsLst.get(0));
         }
 
         if (year == 2017) {
             epsLst = MainActivity.episodeList2017;
+            Log.i("episodeact2017",epsLst.get(0));
         }
 
         if (year == 2014) {
             epsLst = MainActivity.episodeList2014;
+            Log.i("episodeact2014",epsLst.get(0));
         }
 
         if (year == 2013) {
             epsLst = MainActivity.episodeList2013;
+            Log.i("episodeact2013",epsLst.get(0));
         }
 
         if (epsLst.size() == 0) {

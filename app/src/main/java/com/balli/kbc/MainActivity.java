@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference mDatabase, epref, yref;
     private static boolean RUN_ONCE = true;
 
-    static ArrayList<String> episodeList = new ArrayList<String>();
-    static HashMap<String, ArrayList<Question>> episodeQuestionMap = new HashMap<String, ArrayList<Question>>();
-
     static ArrayList<String> episodeList2018 = new ArrayList<String>();
     static HashMap<String, ArrayList<Question>> episodeQuestionMap2018 = new HashMap<String, ArrayList<Question>>();
     static ArrayList<String> episodeList2017 = new ArrayList<String>();
@@ -57,32 +54,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String episodeName = "";
-                episodeList.clear();
-                episodeQuestionMap.clear();
+
                 for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
                     episodeName = String.valueOf(uniqueUserSnapshot.getKey());
-                    episodeList.add(episodeName);
+                    if (year.equals("2018")){
+                        episodeList2018.add(episodeName);
+                        }
+                    if (year.equals("2017")){
+                        episodeList2017.add(episodeName);
+                        }
+                    if (year.equals("2014")){
+                        episodeList2014.add(episodeName);
+                        }
+                    if (year.equals("2013")){
+                        episodeList2013.add(episodeName);
+                      }
                     Log.i("episodeName", episodeName);
                     //above, key is retrieved and not value
                     yref = mDatabase.child(year).child(episodeName);
-                    yref.addListenerForSingleValueEvent(questionList(episodeName));
+                    yref.addListenerForSingleValueEvent(questionList(episodeName,year));
                 }
-
-                if (year.equals("2018")){
-                    episodeList2018=episodeList;
-                    episodeQuestionMap2018=episodeQuestionMap;}
-
-                if (year.equals("2017")){
-                    episodeList2017=episodeList;
-                    episodeQuestionMap2017=episodeQuestionMap;}
-
-                if (year.equals("2014")){
-                    episodeList2014=episodeList;
-                    episodeQuestionMap2014=episodeQuestionMap;}
-
-                if (year.equals("2013")){
-                    episodeList2013=episodeList;
-                    episodeQuestionMap2013=episodeQuestionMap;}
             }
 
             @Override
@@ -92,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return nextEventListener;
     }
 
-    public ValueEventListener questionList(final String episodeName) {
+    public ValueEventListener questionList(final String episodeName,final String year) {
         ValueEventListener nextEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,7 +91,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
                     questionList.add(uniqueUserSnapshot.getValue(Question.class));
                 }
-                episodeQuestionMap.put(episodeName, questionList);
+                //episodeQuestionMap.put(episodeName, questionList);
+                if (year.equals("2018")){
+                    episodeQuestionMap2018.put(episodeName, questionList);
+                }
+                if (year.equals("2017")){
+                    episodeQuestionMap2017.put(episodeName, questionList);
+                }
+                if (year.equals("2014")){
+                    episodeQuestionMap2014.put(episodeName, questionList);
+                }
+                if (year.equals("2013")){
+                    episodeQuestionMap2013.put(episodeName, questionList);
+                }
             }
 
             @Override

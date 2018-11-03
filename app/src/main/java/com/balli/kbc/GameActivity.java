@@ -278,7 +278,7 @@ public class GameActivity extends AppCompatActivity {
 //        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 //        production ad
 //        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
@@ -307,27 +307,28 @@ public class GameActivity extends AppCompatActivity {
         episodelistid = prefs.getInt("episodeNumber", -1);
         year = Integer.toString(prefs.getInt("year", -1));
 
-        if (year == "2018") {
+        if (year.equals("2018")) {
             epsLstDynamic = MainActivity.episodeList2018;
             episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2018;
         }
 
-        if (year == "2017") {
+        if (year.equals("2017")) {
             epsLstDynamic = MainActivity.episodeList2017;
             episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2017;
         }
 
-        if (year == "2014") {
+        if (year.equals("2014")) {
             epsLstDynamic = MainActivity.episodeList2014;
             episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2014;
         }
 
-        if (year == "2013") {
+        if (year.equals("2013")) {
             epsLstDynamic = MainActivity.episodeList2013;
             episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2013;
         }
 
         if (episodelistid != -1) {
+            Log.i("habibi2","habibi2");
             episodeName = epsLstDynamic.get(episodelistid);
             editor.putString("episodeName", episodeName).apply();
             editor.commit();

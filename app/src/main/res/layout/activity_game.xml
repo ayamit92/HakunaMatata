@@ -116,7 +116,7 @@
         android:layout_above="@id/nexgen"
         android:layout_centerHorizontal="true"
         ads:adSize="LARGE_BANNER"
-        ads:adUnitId="ca-app-pub-9621990942730139/5905488750"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
 
     <LinearLayout
         android:id="@+id/nexgen"
