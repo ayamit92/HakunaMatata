@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         epref = mDatabase.child("2018");
 
         runOnce();
+        //test
     }
 
 
