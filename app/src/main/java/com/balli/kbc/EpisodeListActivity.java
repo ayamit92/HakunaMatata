@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -34,6 +36,8 @@ public class EpisodeListActivity extends AppCompatActivity {
     int year;
 
     boolean emptylist = false;
+
+    private AdView mAdView;
 
     public void token() {
         String tkn = "aaa";
@@ -56,6 +60,14 @@ public class EpisodeListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episode_list);
+
+        mAdView = (AdView) findViewById(R.id.adEpisodeList);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+//        production ad
+//        ads:adUnitId="ca-app-pub-9621990942730139/9096307038"
+//        test ad
+//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         epsLst.clear();
