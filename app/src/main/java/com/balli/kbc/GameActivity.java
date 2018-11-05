@@ -61,7 +61,7 @@ public class GameActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     private AdView mAdView;
-    private InterstitialAd mInterstitialAd;
+//    private InterstitialAd mInterstitialAd;
 
     public void nextfun(View view) {
 
@@ -75,12 +75,12 @@ public class GameActivity extends AppCompatActivity {
             }
         } else {
             if (interstitialad == false) {
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    interstitialad = true;
-                } else {
-                    Log.i("TAG", "The interstitial wasn't loaded yet.");
-                }
+//                if (mInterstitialAd.isLoaded()) {
+//                    mInterstitialAd.show();
+//                    interstitialad = true;
+//                } else {
+//                    Log.i("TAG", "The interstitial wasn't loaded yet.");
+//                }
 
                 editor.putString("Correct", String.valueOf(correct)).apply();
                 editor.putString("Total", String.valueOf(count + 1)).apply();
@@ -112,6 +112,9 @@ public class GameActivity extends AppCompatActivity {
 
                 Log.i("currentCount", String.valueOf(currentCount));
                 mDatabase.child("submissions").child("2018").child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
+
+                Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+                startActivity(intent);
             }
 // Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on
 // game screen and we would have switched to score screen
@@ -272,9 +275,9 @@ public class GameActivity extends AppCompatActivity {
 //        test ad
 //        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+//        mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
+//        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 //        production ad
 //        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
 //        test add

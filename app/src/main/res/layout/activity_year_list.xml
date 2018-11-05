@@ -150,14 +150,14 @@
 
     </LinearLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="LARGE_BANNER"
-        ads:adUnitId="ca-app-pub-9621990942730139/1036305454"></com.google.android.gms.ads.AdView>
+    <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/adView1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--ads:adSize="LARGE_BANNER"-->
+        <!--ads:adUnitId="ca-app-pub-9621990942730139/1036305454"></com.google.android.gms.ads.AdView>-->
 
     </RelativeLayout>
 

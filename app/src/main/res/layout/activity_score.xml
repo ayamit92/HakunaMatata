@@ -69,7 +69,7 @@
         android:id="@+id/bb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/adView3"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
@@ -108,13 +108,13 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-9621990942730139/9048347794"></com.google.android.gms.ads.AdView>
+    <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/adView3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--ads:adSize="BANNER"-->
+        <!--ads:adUnitId="ca-app-pub-9621990942730139/9048347794"></com.google.android.gms.ads.AdView>-->
 
 </RelativeLayout>
