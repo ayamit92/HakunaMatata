@@ -1,4 +1,4 @@
-package com.balli.kbc;
+package com.balli.kbcreturns;
 
 import android.content.Context;
 import android.content.Intent;
@@ -81,11 +81,11 @@ public class GameActivity extends AppCompatActivity {
         } else {
             if (interstitialad == false) {
                 interstitialad = true;
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                } else {
-                    Log.i("TAG", "The interstitial wasn't loaded yet.");
-                }
+//                if (mInterstitialAd.isLoaded()) {
+//                    mInterstitialAd.show();
+//                } else {
+//                    Log.i("TAG", "The interstitial wasn't loaded yet.");
+//                }
 
                 editor.putString("Correct", String.valueOf(correct)).apply();
                 editor.putString("Total", String.valueOf(count + 1)).apply();

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.balli.kbc"
+        applicationId "com.balli.kbcreturns"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 13

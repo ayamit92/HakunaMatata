@@ -1,4 +1,4 @@
-package com.balli.kbc;
+package com.balli.kbcreturns;
 
 class MyBounceInterpolator implements android.view.animation.Interpolator {
     private double mAmplitude = 1;
