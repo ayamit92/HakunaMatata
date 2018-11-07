@@ -118,7 +118,7 @@ public class GameActivity extends AppCompatActivity {
                 Log.i("currentCount", String.valueOf(currentCount));
                 mDatabase.child("submissions").child(year).child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
 
-                Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
                 startActivity(intent);
             }
 // Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on

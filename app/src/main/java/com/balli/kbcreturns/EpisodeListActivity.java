@@ -37,7 +37,7 @@ public class EpisodeListActivity extends AppCompatActivity {
 
     boolean emptylist = false;
 
-    private AdView mAdView;
+//    private AdView mAdView;
 
     public void token() {
         String tkn = "aaa";
@@ -61,9 +61,9 @@ public class EpisodeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episode_list);
 
-        mAdView = (AdView) findViewById(R.id.adEpisodeList);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        mAdView = (AdView) findViewById(R.id.adEpisodeList);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 //        production ad
 //        ads:adUnitId="ca-app-pub-9621990942730139/9096307038"
 //        test ad
