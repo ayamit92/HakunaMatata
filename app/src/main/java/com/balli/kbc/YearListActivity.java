@@ -32,7 +32,7 @@ public class YearListActivity extends AppCompatActivity {
     static ArrayList<String> yearList = new ArrayList<String>();
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    private AdView mAdView;
+//    private AdView mAdView;
 
     public void selectyear(View view) {
 
@@ -88,9 +88,9 @@ public class YearListActivity extends AppCompatActivity {
                 "abc", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        mAdView = (AdView) findViewById(R.id.adView1);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        mAdView = (AdView) findViewById(R.id.adView1);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 //        production ad
 //        ads:adUnitId="ca-app-pub-9621990942730139/1036305454"
 //        test ad

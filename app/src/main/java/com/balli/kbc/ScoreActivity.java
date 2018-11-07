@@ -37,7 +37,7 @@ public class ScoreActivity extends AppCompatActivity {
     String attempts;
     AlertDialog.Builder builder;
     Boolean flag = false;
-    private AdView mAdView;
+//    private AdView mAdView;
 
 
     public void retouch(View view) {
@@ -162,9 +162,9 @@ public class ScoreActivity extends AppCompatActivity {
         percentageView.setText("You have performed better than " + percentage + "% of the people");
         attemptView.setText("This quiz has been attempted by " + attempts + " people");
 
-        mAdView = (AdView) findViewById(R.id.adView3);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        mAdView = (AdView) findViewById(R.id.adView3);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 //        production ad
 //        ads:adUnitId="ca-app-pub-9621990942730139/9048347794"
 //        test ad
