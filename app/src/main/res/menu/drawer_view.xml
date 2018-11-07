@@ -6,7 +6,7 @@
 
         <item
             android:id="@+id/ms"
-            android:title="@string/motivational_speeches" />
+            android:title="@string/leaderboard" />
 
         <item
             android:id="@+id/ru"

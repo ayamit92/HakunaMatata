@@ -130,9 +130,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        }, 1000L);
     }
 
-    public void motivate(View view) {
-        Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
-        startActivity(intent);
+    public void leaderboard(View view) {
+//        Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
+//        startActivity(intent);
     }
 
     public void rateus() {
@@ -195,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             epref = mDatabase.child("2013");
             epref.addListenerForSingleValueEvent(episodeList("2013"));
 
-            MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
-            ring.start();
+//            MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
+//            ring.start();
         }
     }
 
@@ -241,8 +241,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case R.id.ms: {
-                Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
+//                startActivity(intent);
                 break;
             }
 
