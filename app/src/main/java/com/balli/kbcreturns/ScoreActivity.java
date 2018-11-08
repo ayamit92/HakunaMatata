@@ -24,12 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.DecimalFormat;
+
 import static java.lang.Long.valueOf;
 
 public class ScoreActivity extends AppCompatActivity {
 
     TextView scoreView, percentageView, attemptView;
     SharedPreferences prefs;
+    SharedPreferences.Editor editor;
     private DatabaseReference mDatabase, epref, yref;
     Long correct;
     Long total;
@@ -38,6 +41,9 @@ public class ScoreActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
     Boolean flag = false;
 //    private AdView mAdView;
+
+    String episodeAttempt;
+    private static DecimalFormat df2 = new DecimalFormat(".##");
 
 
     public void retouch(View view) {
@@ -148,6 +154,8 @@ public class ScoreActivity extends AppCompatActivity {
         prefs = getSharedPreferences(
                 "abc", Context.MODE_PRIVATE);
 
+        editor = prefs.edit();
+
         correct = Long.valueOf(prefs.getString("Correct", "Invalid"));
         total = Long.valueOf(prefs.getString("Total", "Invalid"));
         String result = correct + "/" + total;
@@ -155,8 +163,42 @@ public class ScoreActivity extends AppCompatActivity {
         percentage = prefs.getString("Percent", "Invalid percent");
         attempts = prefs.getString("Attempts", "Invalid number of attempts");
 
-
         String episodeName = prefs.getString("episodeName", "Episode not found");
+
+        episodeAttempt = prefs.getString(episodeName, "false");
+        if (episodeAttempt.equals("false"))
+        {
+            String profileName=prefs.getString("profileName", "Invalid");
+            String profileAge=prefs.getString("profileAge", "Invalid");
+            String profileCity=prefs.getString("profileCity", "Invalid");
+            String profileGender=prefs.getString("profileGender", "Invalid");
+            String profileCorrect=prefs.getString("profileCorrect", "Invalid");
+            String profileAttempted=prefs.getString("profileAttempted", "Invalid");
+
+            profileCorrect=Long.toString((Long.parseLong(profileCorrect)+correct));
+            profileAttempted=Long.toString((Long.parseLong(profileAttempted)+total));
+
+            double profilePercentage = ((double) Long.parseLong(profileCorrect) / Long.parseLong(profileAttempted)) * 100;
+            String pct="";
+
+            if (profileCorrect.equals("0"))
+                pct="0";
+            else
+                pct=String.valueOf(df2.format(profilePercentage));
+
+            editor.putString("profileCorrect", profileCorrect).apply();
+            editor.putString("profileAttempted", profileAttempted).apply();
+            editor.putString("profilePercentage", pct).apply();
+
+            editor.putString(episodeName, "true").apply();
+            editor.commit();
+
+            //update database with new score for that unique id
+            Registration r1=new Registration(profileName,profileAge,profileCity,profileGender,profileCorrect,profileAttempted,pct);
+            String uniqueId = prefs.getString("uniqueId", "false");
+            mDatabase.child("users").child(uniqueId).setValue(r1);
+        }
+
 
         scoreView.setText(result);
         percentageView.setText("You have performed better than " + percentage + "% of the people");

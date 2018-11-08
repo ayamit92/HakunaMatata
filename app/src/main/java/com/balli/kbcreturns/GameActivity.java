@@ -118,8 +118,16 @@ public class GameActivity extends AppCompatActivity {
                 Log.i("currentCount", String.valueOf(currentCount));
                 mDatabase.child("submissions").child(year).child(episodeName).child(String.valueOf(correct)).setValue(currentCount + 1);
 
+                String existingUser = prefs.getString("existingUser", "false");
+
+                if (existingUser.equals("false")){
                 Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-                startActivity(intent);
+                startActivity(intent);}
+
+                else {
+                    Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
+                    startActivity(intent);
+                }
             }
 // Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on
 // game screen and we would have switched to score screen

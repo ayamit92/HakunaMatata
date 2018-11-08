@@ -1,7 +1,9 @@
 package com.balli.kbcreturns;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button qBankButton;
     private DatabaseReference mDatabase, epref, yref;
     private static boolean RUN_ONCE = true;
+    String registeredUsers="9999";
 
     static ArrayList<String> episodeList2018 = new ArrayList<String>();
     static HashMap<String, ArrayList<Question>> episodeQuestionMap2018 = new HashMap<String, ArrayList<Question>>();
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static HashMap<String, ArrayList<Question>> episodeQuestionMap2014 = new HashMap<String, ArrayList<Question>>();
     static ArrayList<String> episodeList2013 = new ArrayList<String>();
     static HashMap<String, ArrayList<Question>> episodeQuestionMap2013 = new HashMap<String, ArrayList<Question>>();
+
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
     public ValueEventListener episodeList(final String year) {
         ValueEventListener nextEventListener = new ValueEventListener() {
@@ -113,6 +119,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return nextEventListener;
     }
 
+    // retrieving single value like string/long corresponding to a particular node
+    public ValueEventListener getRegistredUsersCount() {
+        ValueEventListener nextEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                registeredUsers = (String) dataSnapshot.getValue();
+                Log.i("shotgun",registeredUsers);
+                editor.putString("registeredUsers", registeredUsers).apply();
+                editor.commit();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        return nextEventListener;
+    }
+
     public void questionbank(View view) {
         Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
         startActivity(intent);
@@ -165,6 +190,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        prefs = getSharedPreferences(
+                "abc", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+
         runOnce();
         //test
     }
@@ -182,6 +211,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             episodeQuestionMap2014.clear();
             episodeList2013.clear();
             episodeQuestionMap2013.clear();
+
+            epref = mDatabase.child("leaderboard");
+            epref.addListenerForSingleValueEvent(getRegistredUsersCount());
 
             epref = mDatabase.child("2018");
             epref.addListenerForSingleValueEvent(episodeList("2018"));
