@@ -33,9 +33,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void regsubmit(View view) {
 
-        String name = nameView.getText().toString();
+        String name = nameView.getText().toString().trim();
         String age = ageSpinner.getSelectedItem().toString();
-        String city = cityView.getText().toString();
+        String city = cityView.getText().toString().trim();
         String gender = genderSpinner.getSelectedItem().toString();
 
         //check name and city to be not null
@@ -69,7 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         else{
-            Toast.makeText(getApplicationContext(), "Name and City can not be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Name and City cannot be empty !!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -101,4 +101,12 @@ public class RegistrationActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown1.setAdapter(adapter1);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), EpisodeListActivity.class);
+        startActivity(intent);
+        return;
+    }
+
 }
