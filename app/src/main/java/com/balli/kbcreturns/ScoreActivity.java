@@ -25,7 +25,10 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Collections;
 
+import static com.balli.kbcreturns.Registration.CorrectComparator;
 import static java.lang.Long.valueOf;
 
 public class ScoreActivity extends AppCompatActivity {
@@ -168,12 +171,21 @@ public class ScoreActivity extends AppCompatActivity {
         episodeAttempt = prefs.getString(episodeName, "false");
         if (episodeAttempt.equals("false"))
         {
+            Collections.sort(MainActivity.leadersList,Registration.CorrectComparator);
+
+            for(Registration temp: MainActivity.leadersList){
+                System.out.println("fruits " + temp.getUniqueid());
+            }
+
+
+
             String profileName=prefs.getString("profileName", "Invalid");
             String profileAge=prefs.getString("profileAge", "Invalid");
             String profileCity=prefs.getString("profileCity", "Invalid");
             String profileGender=prefs.getString("profileGender", "Invalid");
             String profileCorrect=prefs.getString("profileCorrect", "Invalid");
             String profileAttempted=prefs.getString("profileAttempted", "Invalid");
+            String profileUniqueId=prefs.getString("uniqueId", "Invalid");
 
             profileCorrect=Long.toString((Long.parseLong(profileCorrect)+correct));
             profileAttempted=Long.toString((Long.parseLong(profileAttempted)+total));
@@ -194,9 +206,9 @@ public class ScoreActivity extends AppCompatActivity {
             editor.commit();
 
             //update database with new score for that unique id
-            Registration r1=new Registration(profileName,profileAge,profileCity,profileGender,profileCorrect,profileAttempted,pct);
+            Registration r1=new Registration(profileName,profileAge,profileCity,profileGender,profileCorrect,profileAttempted,pct,profileUniqueId);
             String uniqueId = prefs.getString("uniqueId", "false");
-            mDatabase.child("users").child(uniqueId).setValue(r1);
+            mDatabase.child("registeredUsers").child(uniqueId).setValue(r1);
         }
 
 

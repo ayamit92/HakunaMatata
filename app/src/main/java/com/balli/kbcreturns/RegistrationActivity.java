@@ -44,13 +44,11 @@ public class RegistrationActivity extends AppCompatActivity {
         String attempted="0";
         String percentage="0";
 
-        Registration r1=new Registration(name,age,city,gender,correct,attempted,percentage);
-
         registeredUsers = prefs.getString("registeredUsers", "9999");
 
         if ((name.length()!=0) && (city.length()!=0)){
-            uniqueId=name+registeredUsers;
-            mDatabase.child("leaderboard").setValue(Integer.toString(Integer.parseInt(registeredUsers)+1));
+            uniqueId=name+(Integer.toString(Integer.parseInt(registeredUsers)+1));
+            mDatabase.child("registeredUsersCount").setValue(Integer.toString(Integer.parseInt(registeredUsers)+1));
 
             editor.putString("profileName", name).apply();
             editor.putString("profileAge", age).apply();

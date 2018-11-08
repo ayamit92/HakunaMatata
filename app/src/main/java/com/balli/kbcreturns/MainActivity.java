@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    static ArrayList<Registration> leadersList = new ArrayList<Registration>();
+
 
     public ValueEventListener episodeList(final String year) {
         ValueEventListener nextEventListener = new ValueEventListener() {
@@ -138,6 +140,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return nextEventListener;
     }
 
+    public ValueEventListener leaderList() {
+        ValueEventListener nextEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                leadersList.clear();
+                for (DataSnapshot uniqueUserSnapshot : dataSnapshot.getChildren()) {
+                    leadersList.add(uniqueUserSnapshot.getValue(Registration.class));
+                    Log.i("Leader",uniqueUserSnapshot.getValue(Registration.class).getUniqueid());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        return nextEventListener;
+    }
+
     public void questionbank(View view) {
         Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
         startActivity(intent);
@@ -212,8 +232,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             episodeList2013.clear();
             episodeQuestionMap2013.clear();
 
-            epref = mDatabase.child("leaderboard");
+            epref = mDatabase.child("registeredUsersCount");
             epref.addListenerForSingleValueEvent(getRegistredUsersCount());
+
+            epref = mDatabase.child("leaderboard");
+            epref.addListenerForSingleValueEvent(leaderList());
 
             epref = mDatabase.child("2018");
             epref.addListenerForSingleValueEvent(episodeList("2018"));
