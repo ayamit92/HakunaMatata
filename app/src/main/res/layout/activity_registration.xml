@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/toolbarblue"
+    tools:context=".RegistrationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Registration for Leaderboard!"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/editname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/note"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="#ffffff"
+            android:ems="10"
+            android:hint="NAME"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textPersonName"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/editcity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editname"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#ffffff"
+            android:ems="10"
+            android:hint="CITY"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:inputType="textPersonName" />
+
+        <RelativeLayout
+            android:id="@+id/spinwrap"
+            android:layout_width="match_parent"
+            android:layout_below="@id/editcity"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textage"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="AGE"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+        <RelativeLayout
+
+            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:background="#ffffff"
+            android:layout_alignParentRight="true">
+
+        <Spinner
+            android:id="@+id/spinnerage"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:popupBackground="#ffffff"
+            android:spinnerMode="dropdown"/>
+
+        </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spinwrap2"
+            android:layout_width="match_parent"
+            android:layout_below="@id/spinwrap"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textgender"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="GENDER"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+
+                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:background="#ffffff"
+                android:layout_alignParentRight="true">
+
+                <Spinner
+                    android:id="@+id/spinnergender"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:popupBackground="#ffffff"
+                    android:spinnerMode="dropdown"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/buttonMot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/toolbarpurpround40"
+            android:onClick="regsubmit"
+            android:text="Submit"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
