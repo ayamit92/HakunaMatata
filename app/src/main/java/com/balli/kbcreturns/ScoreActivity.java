@@ -177,7 +177,7 @@ public class ScoreActivity extends AppCompatActivity {
                 System.out.println("fruits " + temp.getUniqueid());
             }
 
-
+            int size=MainActivity.leadersList.size();
 
             String profileName=prefs.getString("profileName", "Invalid");
             String profileAge=prefs.getString("profileAge", "Invalid");
@@ -209,6 +209,12 @@ public class ScoreActivity extends AppCompatActivity {
             Registration r1=new Registration(profileName,profileAge,profileCity,profileGender,profileCorrect,profileAttempted,pct,profileUniqueId);
             String uniqueId = prefs.getString("uniqueId", "false");
             mDatabase.child("registeredUsers").child(uniqueId).setValue(r1);
+
+            Log.i("chikoo",profileCorrect+"::"+MainActivity.leadersList.get(size-1).getCorrect());
+            if (MainActivity.leadersList.get(size-1).getCorrect().compareTo(profileCorrect)<0){
+                mDatabase.child("leaderboard").child(uniqueId).setValue(r1);
+                //Log.i("chikoo","chikoo");
+            }
         }
 
 

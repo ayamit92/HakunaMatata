@@ -1,8 +1,5 @@
 package com.balli.kbcreturns;
 
-
-import android.support.annotation.NonNull;
-
 import java.util.Comparator;
 
 public class Registration{
@@ -93,27 +90,6 @@ public class Registration{
     public void setUniqueid(String uniqueid) {
         this.uniqueid = uniqueid;
     }
-
-//    @Override
-//    public int compareTo(@NonNull Registration registration) {
-//        return 0;
-//    }
-//    public static Comparator<Registration> CorrectComparator
-//            = new Comparator<Registration>() {
-//
-//        public int compare(Registration reg1, Registration reg2) {
-//
-//            String correct1 = reg1.getCorrect().toUpperCase();
-//            String correct2 = reg2.getCorrect().toUpperCase();
-//
-//            //ascending order
-//            //return correct1.compareTo(correct2);
-//
-//            //descending order
-//            return correct2.compareTo(correct1);
-//        }
-//
-//    };
 
     public static Comparator<Registration> CorrectComparator = new Comparator<Registration>() {
 
