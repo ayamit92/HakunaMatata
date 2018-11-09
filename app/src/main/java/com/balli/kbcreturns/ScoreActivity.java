@@ -25,6 +25,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -171,14 +172,6 @@ public class ScoreActivity extends AppCompatActivity {
         episodeAttempt = prefs.getString(episodeName, "false");
         if (episodeAttempt.equals("false"))
         {
-            Collections.sort(MainActivity.leadersList,Registration.CorrectComparator);
-
-            for(Registration temp: MainActivity.leadersList){
-                System.out.println("fruits " + temp.getUniqueid());
-            }
-
-            int size=MainActivity.leadersList.size();
-
             String profileName=prefs.getString("profileName", "Invalid");
             String profileAge=prefs.getString("profileAge", "Invalid");
             String profileCity=prefs.getString("profileCity", "Invalid");
@@ -210,10 +203,20 @@ public class ScoreActivity extends AppCompatActivity {
             String uniqueId = prefs.getString("uniqueId", "false");
             mDatabase.child("registeredUsers").child(uniqueId).setValue(r1);
 
+
+            Collections.sort(MainActivity.leadersList,Registration.CorrectComparator);
+            //remove below loop before releasing to production
+            for(Registration temp: MainActivity.leadersList){
+                System.out.println("fruits " + temp.getUniqueid());
+            }
+
+            int size=MainActivity.leadersList.size();
+
             Log.i("chikoo",profileCorrect+"::"+MainActivity.leadersList.get(size-1).getCorrect());
             if (MainActivity.leadersList.get(size-1).getCorrect().compareTo(profileCorrect)<0){
                 mDatabase.child("leaderboard").child(uniqueId).setValue(r1);
                 //Log.i("chikoo","chikoo");
+                //MainActivity.leadersList.add(r1); Can create duplicacy issues if already there in leaderboard
             }
         }
 

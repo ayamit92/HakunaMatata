@@ -17,7 +17,7 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/toolbar"
+            android:background="@drawable/toolbarblue"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -44,7 +44,7 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/toolbar"
+                android:background="@drawable/toolbarblue"
                 android:onClick="questionbank"
                 android:text="Question Bank"
                 android:textColor="#ffffff"
@@ -56,9 +56,21 @@
                 android:id="@+id/buttonMot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/toolbar"
+                android:background="@drawable/toolbarblue"
                 android:onClick="leaderboard"
                 android:text="Leaderboard"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="5dp"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/buttonProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toolbarblue"
+                android:onClick="profile"
+                android:text="My PROFILE"
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="italic" />

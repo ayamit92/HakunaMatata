@@ -146,7 +146,7 @@ public class EpisodeListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
         startActivity(intent);
         return;
     }

@@ -61,7 +61,8 @@
         <activity android:name=".ScoreActivity" />
         <activity android:name=".MotivationalActivity" />
         <activity android:name=".MotivationalNonCloudActivity" />
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".AccountActivity"></activity>
     </application>
 
 </manifest>

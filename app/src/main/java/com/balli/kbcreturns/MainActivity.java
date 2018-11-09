@@ -179,6 +179,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
 //        startActivity(intent);
     }
+    public void profile(View view) {
+        if (prefs.getString("existingUser", "false").equals("true")){
+            Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+            startActivity(intent);}
+        else{
+            Toast.makeText(getApplicationContext(), "Your profile is created only after you play your first quiz", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void rateus() {
         Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
@@ -303,6 +312,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.ru: {
                 rateus();
+                break;
+            }
+
+            case R.id.pp: {
+                if (prefs.getString("existingUser", "false").equals("true")){
+                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+                startActivity(intent);}
+                else{
+                    Toast.makeText(getApplicationContext(), "Your profile is created only after you play your first quiz", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
