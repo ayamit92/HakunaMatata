@@ -161,7 +161,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="25dp"
-        android:text="Note: If a particular quiz has been attempted more than once, only the score of first attempt is considered !!"
+        android:text="Note: If a particular quiz has been attempted more than once by a person, only the score of his first attempt is considered !!"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textStyle="italic"

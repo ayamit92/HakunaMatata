@@ -9,9 +9,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            android:layout_alignParentTop="true">
@@ -21,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="Amit Yadav"
+            android:text="Name"
             android:textColor="#ffffff"
             android:textSize="16sp" />
 
@@ -29,7 +33,7 @@
             android:id="@+id/secondLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amit Yadav123"
+            android:text="UniqueId"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/firstLine"
             android:textColor="#ffffff"
@@ -39,7 +43,7 @@
             android:id="@+id/thirdLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="24/30"
+            android:text="Correct/Attempted"
             android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
             android:textSize="16sp" />
@@ -48,7 +52,7 @@
             android:id="@+id/fourthLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50%"
+            android:text="Percentage"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/thirdLine"
             android:textColor="#ffffff"
@@ -58,7 +62,7 @@
             android:id="@+id/fifthLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bikaner"
+            android:text="City"
             android:layout_alignParentRight="true"
             android:textColor="#ffffff"
             android:textSize="16sp" />
@@ -67,7 +71,7 @@
             android:id="@+id/sixthLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="26, Male"
+            android:text="Age, Gender"
             android:layout_below="@+id/fifthLine"
             android:layout_alignParentRight="true"
             android:textColor="#ffffff"
@@ -78,9 +82,13 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"
+            android:layout_below="@+id/header"
             android:layout_above="@+id/note1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:scrollbars="vertical" />
 
         <RelativeLayout
@@ -100,7 +108,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Note: If a particular quiz has been attempted more than once, only the score of first attempt is considered !!"
+                android:text="Note: If a particular quiz has been attempted more than once by a person, only the score of his first attempt is considered !!"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="15sp"
