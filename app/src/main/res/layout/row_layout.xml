@@ -7,28 +7,55 @@
 
     <TextView
         android:id="@+id/firstLine"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/secondLine"
-        android:layout_alignParentTop="true"
-        android:text="Example application"
+        android:layout_alignParentLeft="true"
+        android:text="Amit Yadav"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/secondLine"
-        android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_alignParentBottom="true"
-        android:text="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amit Yadav123"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/firstLine"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/thirdLine"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
-        android:layout_marginLeft="120dp"
+        android:text="24/30"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/fourthLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/thirdLine"
         android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/fifthLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bikaner"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/sixthLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="26, Male"
+        android:layout_below="@+id/fifthLine"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp" />
+
 
 
 
