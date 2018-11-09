@@ -62,7 +62,8 @@
         <activity android:name=".MotivationalActivity" />
         <activity android:name=".MotivationalNonCloudActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".AccountActivity"></activity>
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".LeaderboardActivity"></activity>
     </application>
 
 </manifest>

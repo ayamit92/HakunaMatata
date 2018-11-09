@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void leaderboard(View view) {
-//        Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
+        startActivity(intent);
     }
     public void profile(View view) {
         if (prefs.getString("existingUser", "false").equals("true")){
