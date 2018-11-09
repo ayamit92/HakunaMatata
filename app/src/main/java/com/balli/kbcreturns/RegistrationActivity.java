@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -47,7 +48,9 @@ public class RegistrationActivity extends AppCompatActivity {
         registeredUsers = prefs.getString("registeredUsers", "9999");
 
         if ((name.length()!=0) && (city.length()!=0)){
-            uniqueId=name+(Integer.toString(Integer.parseInt(registeredUsers)+1));
+            Random rand = new Random();
+            int  n = rand.nextInt(999) + 1;
+            uniqueId=name+(Integer.toString(n))+"A"+(Integer.toString(Integer.parseInt(registeredUsers)+1));
             mDatabase.child("registeredUsersCount").setValue(Integer.toString(Integer.parseInt(registeredUsers)+1));
 
             editor.putString("profileName", name).apply();

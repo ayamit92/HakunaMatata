@@ -161,18 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void questionbank(View view) {
         Intent intent = new Intent(getApplicationContext(), YearListActivity.class);
         startActivity(intent);
-
-////        handler is required as next activity gets started even before data is populated, so 1s pause time is applied
-//        final Handler mHandler = new Handler();
-//        mHandler.postDelayed(new Runnable() {
-//
-//            @Override
-//            public void run() {
-////                         Intent intent=new Intent (getApplicationContext(),YearListActivity.class);
-//                           startActivity(intent);
-//            }
-//
-//        }, 1000L);
     }
 
     public void leaderboard(View view) {
@@ -184,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
             startActivity(intent);}
         else{
-            Toast.makeText(getApplicationContext(), "Your profile is created only after you play your first quiz", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Your profile is created only after you play your first quiz!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -320,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
                 startActivity(intent);}
                 else{
-                    Toast.makeText(getApplicationContext(), "Your profile is created only after you play your first quiz", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Your profile is created only after you play your first quiz!", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
@@ -334,4 +322,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         this.finishAffinity();
     }
+
+////        handler is required as next activity gets started even before data is populated, so 1s pause time is applied
+//        final Handler mHandler = new Handler();
+//        mHandler.postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
+////                         Intent intent=new Intent (getApplicationContext(),YearListActivity.class);
+//                           startActivity(intent);
+//            }
+//
+//        }, 1000L);
+
 }

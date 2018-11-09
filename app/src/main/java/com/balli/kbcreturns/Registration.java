@@ -95,7 +95,7 @@ public class Registration{
 
         @Override
         public int compare(Registration e1, Registration e2) {
-            return e2.getCorrect().compareTo(e1.getCorrect());
+            return Integer.parseInt(e2.getCorrect())-Integer.parseInt(e1.getCorrect());
         }
     };
 

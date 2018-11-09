@@ -40,7 +40,7 @@ public class AccountActivity extends AppCompatActivity {
         String profilePercentage=prefs.getString("profilePercentage", "Invalid");
 
         textname.setText(profileName);
-        textunique.setText("(Unique Id :"+profileUniqueId+")");
+        textunique.setText("(Unique Id: "+profileUniqueId+")");
         asl.setText(profileAge+", "+profileGender+", "+profileCity);
         correct.setText("Total Correct Answers: "+profileCorrect);
         attempted.setText("Total Questions Attempted: "+profileAttempted);

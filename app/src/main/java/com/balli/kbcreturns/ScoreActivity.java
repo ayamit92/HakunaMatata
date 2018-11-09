@@ -123,15 +123,15 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
     public void token() {
-        String tkn="aaa";
+        String tkn = "aaa";
 
-        if (FirebaseInstanceId.getInstance().getToken()!=null){
+        if (FirebaseInstanceId.getInstance().getToken() != null) {
             tkn = FirebaseInstanceId.getInstance().getToken();
             FirebaseMessaging.getInstance().subscribeToTopic("allDevices");
         }
 //        Toast.makeText(MainActivity.this, "Current token ["+tkn+"]",
 //        Toast.LENGTH_LONG).show();
-        Log.i("zoobie", "Token ["+tkn+"]");
+        Log.i("zoobie", "Token [" + tkn + "]");
 
         //below step is not mandate, just kept to keep track of devices opening app
         //topic is automatically created when subscribed to it,
@@ -170,26 +170,25 @@ public class ScoreActivity extends AppCompatActivity {
         String episodeName = prefs.getString("episodeName", "Episode not found");
 
         episodeAttempt = prefs.getString(episodeName, "false");
-        if (episodeAttempt.equals("false"))
-        {
-            String profileName=prefs.getString("profileName", "Invalid");
-            String profileAge=prefs.getString("profileAge", "Invalid");
-            String profileCity=prefs.getString("profileCity", "Invalid");
-            String profileGender=prefs.getString("profileGender", "Invalid");
-            String profileCorrect=prefs.getString("profileCorrect", "Invalid");
-            String profileAttempted=prefs.getString("profileAttempted", "Invalid");
-            String profileUniqueId=prefs.getString("uniqueId", "Invalid");
+        if (episodeAttempt.equals("false")) {
+            String profileName = prefs.getString("profileName", "Invalid");
+            String profileAge = prefs.getString("profileAge", "Invalid");
+            String profileCity = prefs.getString("profileCity", "Invalid");
+            String profileGender = prefs.getString("profileGender", "Invalid");
+            String profileCorrect = prefs.getString("profileCorrect", "Invalid");
+            String profileAttempted = prefs.getString("profileAttempted", "Invalid");
+            String profileUniqueId = prefs.getString("uniqueId", "Invalid");
 
-            profileCorrect=Long.toString((Long.parseLong(profileCorrect)+correct));
-            profileAttempted=Long.toString((Long.parseLong(profileAttempted)+total));
+            profileCorrect = Long.toString((Long.parseLong(profileCorrect) + correct));
+            profileAttempted = Long.toString((Long.parseLong(profileAttempted) + total));
 
             double profilePercentage = ((double) Long.parseLong(profileCorrect) / Long.parseLong(profileAttempted)) * 100;
-            String pct="";
+            String pct = "";
 
             if (profileCorrect.equals("0"))
-                pct="0";
+                pct = "0";
             else
-                pct=String.valueOf(df2.format(profilePercentage));
+                pct = String.valueOf(df2.format(profilePercentage));
 
             editor.putString("profileCorrect", profileCorrect).apply();
             editor.putString("profileAttempted", profileAttempted).apply();
@@ -199,24 +198,25 @@ public class ScoreActivity extends AppCompatActivity {
             editor.commit();
 
             //update database with new score for that unique id
-            Registration r1=new Registration(profileName,profileAge,profileCity,profileGender,profileCorrect,profileAttempted,pct,profileUniqueId);
+            Registration r1 = new Registration(profileName, profileAge, profileCity, profileGender, profileCorrect, profileAttempted, pct, profileUniqueId);
             String uniqueId = prefs.getString("uniqueId", "false");
             mDatabase.child("registeredUsers").child(uniqueId).setValue(r1);
 
+            if (MainActivity.leadersList.size() != 0) {
+                Collections.sort(MainActivity.leadersList, Registration.CorrectComparator);
+                //remove below loop before releasing to production
+//            for(int i=0;i<MainActivity.leadersList.size();i++){
+//                System.out.println("fruits " + MainActivity.leadersList.get(i).getUniqueid()+"::"+i+"::"+MainActivity.leadersList.get(i).getCorrect());
+//            }
 
-            Collections.sort(MainActivity.leadersList,Registration.CorrectComparator);
-            //remove below loop before releasing to production
-            for(Registration temp: MainActivity.leadersList){
-                System.out.println("fruits " + temp.getUniqueid());
-            }
+                int size = MainActivity.leadersList.size();
 
-            int size=MainActivity.leadersList.size();
-
-            Log.i("chikoo",profileCorrect+"::"+MainActivity.leadersList.get(size-1).getCorrect());
-            if (MainActivity.leadersList.get(size-1).getCorrect().compareTo(profileCorrect)<0){
-                mDatabase.child("leaderboard").child(uniqueId).setValue(r1);
-                //Log.i("chikoo","chikoo");
-                //MainActivity.leadersList.add(r1); Can create duplicacy issues if already there in leaderboard
+                Log.i("chikoo", profileCorrect + "::" + MainActivity.leadersList.get(size - 1).getCorrect());
+                if (MainActivity.leadersList.get(size - 1).getCorrect().compareTo(profileCorrect) < 0) {
+                    mDatabase.child("leaderboard").child(uniqueId).setValue(r1);
+                    //Log.i("chikoo","chikoo");
+                    //MainActivity.leadersList.add(r1); Can create duplicacy issues if already there in leaderboard
+                }
             }
         }
 

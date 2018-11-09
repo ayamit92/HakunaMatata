@@ -55,12 +55,11 @@ public class GameActivity extends AppCompatActivity {
     long score = 1;
     long scorePlus = 0;
     private static DecimalFormat df2 = new DecimalFormat(".##");
-    private static boolean interstitialad;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
-    private AdView mAdView;
+//    private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
     String year;
@@ -72,21 +71,20 @@ public class GameActivity extends AppCompatActivity {
 
         if (count < episodeQuestionMapDynamic.get(episodeName).size() - 1) {
             if (clicked) {
+
+                if (mInterstitialAd.isLoaded() && count==1) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.i("TAG", "The interstitial wasn't loaded yet.");
+                }
                 setValues(++count);
                 clicked = false;
                 flag = false;
+
             } else {
                 Toast.makeText(getApplicationContext(), "Please select an option!", Toast.LENGTH_SHORT).show();
             }
         } else {
-            if (interstitialad == false) {
-                interstitialad = true;
-//                if (mInterstitialAd.isLoaded()) {
-//                    mInterstitialAd.show();
-//                } else {
-//                    Log.i("TAG", "The interstitial wasn't loaded yet.");
-//                }
-
                 editor.putString("Correct", String.valueOf(correct)).apply();
                 editor.putString("Total", String.valueOf(count + 1)).apply();
                 editor.commit();
@@ -120,24 +118,13 @@ public class GameActivity extends AppCompatActivity {
 
                 String existingUser = prefs.getString("existingUser", "false");
 
-                if (existingUser.equals("false")){
-                Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-                startActivity(intent);}
-
-                else {
+                if (existingUser.equals("false")) {
+                    Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+                    startActivity(intent);
+                } else {
                     Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
                     startActivity(intent);
                 }
-            }
-// Not starting the activity directly and putting a hold of 2sec so that interstitial ad is visible, otherwise the ad will come on
-// game screen and we would have switched to score screen
-//            Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-//            startActivity(intent);
-
-            else {
-                Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-                startActivity(intent);
-            }
 
         }
     }
@@ -278,21 +265,19 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        interstitialad = false;
-
-        mAdView = (AdView) findViewById(R.id.adView2);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        mAdView = (AdView) findViewById(R.id.adView2);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 //        production ad
-//        ads:adUnitId="ca-app-pub-9621990942730139/5905488750"
+//        ads:adUnitId=""
 //        test ad
 //        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
-//        mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-//        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 //        production ad
-//        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5144352680");
+//        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5521917745");
 //        test add
 //        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
@@ -320,26 +305,26 @@ public class GameActivity extends AppCompatActivity {
 
         if (year.equals("2018")) {
             epsLstDynamic = MainActivity.episodeList2018;
-            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2018;
+            episodeQuestionMapDynamic = MainActivity.episodeQuestionMap2018;
         }
 
         if (year.equals("2017")) {
             epsLstDynamic = MainActivity.episodeList2017;
-            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2017;
+            episodeQuestionMapDynamic = MainActivity.episodeQuestionMap2017;
         }
 
         if (year.equals("2014")) {
             epsLstDynamic = MainActivity.episodeList2014;
-            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2014;
+            episodeQuestionMapDynamic = MainActivity.episodeQuestionMap2014;
         }
 
         if (year.equals("2013")) {
             epsLstDynamic = MainActivity.episodeList2013;
-            episodeQuestionMapDynamic=MainActivity.episodeQuestionMap2013;
+            episodeQuestionMapDynamic = MainActivity.episodeQuestionMap2013;
         }
 
         if (episodelistid != -1) {
-            Log.i("habibi2","habibi2");
+            Log.i("habibi2", "habibi2");
             episodeName = epsLstDynamic.get(episodelistid);
             editor.putString("episodeName", episodeName).apply();
             editor.commit();
