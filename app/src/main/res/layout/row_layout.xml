@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@drawable/toolbarblue"
     android:padding="6dp" >
 
 
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:text="Amit Yadav"
+        android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <TextView
@@ -20,6 +22,7 @@
         android:text="Amit Yadav123"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/firstLine"
+        android:textColor="#ffffff"
         android:textSize="12sp" />
 
     <TextView
@@ -28,6 +31,7 @@
         android:layout_height="wrap_content"
         android:text="24/30"
         android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <TextView
@@ -37,6 +41,7 @@
         android:text="50%"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/thirdLine"
+        android:textColor="#ffffff"
         android:textSize="12sp" />
 
     <TextView
@@ -45,6 +50,7 @@
         android:layout_height="wrap_content"
         android:text="Bikaner"
         android:layout_alignParentRight="true"
+        android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <TextView
@@ -54,6 +60,7 @@
         android:text="26, Male"
         android:layout_below="@+id/fifthLine"
         android:layout_alignParentRight="true"
+        android:textColor="#ffffff"
         android:textSize="12sp" />
 
 

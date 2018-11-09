@@ -293,8 +293,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case R.id.ms: {
-//                Intent intent = new Intent(getApplicationContext(), MotivationalNonCloudActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
+                startActivity(intent);
                 break;
             }
 
