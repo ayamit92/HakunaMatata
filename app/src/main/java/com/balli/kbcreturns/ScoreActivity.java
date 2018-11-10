@@ -216,6 +216,13 @@ public class ScoreActivity extends AppCompatActivity {
                     mDatabase.child("leaderboard").child(uniqueId).setValue(r1);
                     //Log.i("chikoo","chikoo");
                     //MainActivity.leadersList.add(r1); Can create duplicacy issues if already there in leaderboard
+                    for (int k=0;k<size-1;k++){
+
+                        if (MainActivity.leadersList.get(k).getUniqueid().equals(profileUniqueId))
+                            MainActivity.leadersList.remove(k);
+                    }
+
+                    MainActivity.leadersList.add(r1);
                 }
             }
         }
