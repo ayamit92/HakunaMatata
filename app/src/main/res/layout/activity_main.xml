@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/kbc9">
+        android:background="@drawable/kbcr">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
