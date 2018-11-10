@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void leaderboard(View view) {
-        Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_LONG).show();
         final Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
 
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
 
-        }, 2000L);
+        }, 3000L);
     }
     public void profile(View view) {
         if (prefs.getString("existingUser", "false").equals("true")){
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case R.id.ms: {
-                Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_LONG).show();
                 final Handler mHandler = new Handler();
                 mHandler.postDelayed(new Runnable() {
 
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(intent);
                     }
 
-                }, 2000L);
+                }, 3000L);
                 break;
             }
 

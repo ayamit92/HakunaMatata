@@ -50,7 +50,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if ((name.length()!=0) && (city.length()!=0)){
             Random rand = new Random();
             int  n = rand.nextInt(999) + 1;
-            uniqueId=name+(Integer.toString(n))+"A"+(Integer.toString(Integer.parseInt(registeredUsers)+1));
+            uniqueId=(Integer.toString(Integer.parseInt(registeredUsers)+1))+"A"+(Integer.toString(n))+"Y"+name;
             mDatabase.child("registeredUsersCount").setValue(Integer.toString(Integer.parseInt(registeredUsers)+1));
 
             editor.putString("profileName", name).apply();
