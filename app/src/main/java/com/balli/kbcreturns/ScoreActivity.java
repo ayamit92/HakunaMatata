@@ -217,7 +217,6 @@ public class ScoreActivity extends AppCompatActivity {
                     //Log.i("chikoo","chikoo");
                     //MainActivity.leadersList.add(r1); Can create duplicacy issues if already there in leaderboard
                     for (int k=0;k<size-1;k++){
-
                         if (MainActivity.leadersList.get(k).getUniqueid().equals(profileUniqueId))
                             MainActivity.leadersList.remove(k);
                     }
@@ -225,6 +224,11 @@ public class ScoreActivity extends AppCompatActivity {
                     MainActivity.leadersList.add(r1);
                 }
             }
+//              testing by increasing leaderboard size to 1000
+//            for (int p=0;p<1000;p++)
+//            {
+//                mDatabase.child("leaderboard").child(p+"test").setValue(new Registration(profileName, profileAge, profileCity, profileGender, profileCorrect, profileAttempted, pct, profileUniqueId));
+//            }
         }
 
 

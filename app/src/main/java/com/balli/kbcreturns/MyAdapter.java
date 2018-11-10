@@ -89,11 +89,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 //            }
 //        });
 
-        holder.txtfirstLine.setText("#"+(position+1)+"   "+name);
-        holder.txtsecondLine.setText("(" + uniqueid+")");
+        if (name.length()>20)
+            holder.txtfirstLine.setText("#"+(position+1)+"   "+name.substring(0,15));
+        else
+            holder.txtfirstLine.setText("#"+(position+1)+"   "+name);
+
+        if (uniqueid.length()>20)
+            holder.txtsecondLine.setText("(" + uniqueid.substring(0,15)+")");
+        else
+            holder.txtsecondLine.setText("(" + uniqueid+")");
+
+        if (city.length()>20)
+            holder.txtfifthLine.setText(city.substring(0,15));
+        else
+            holder.txtfifthLine.setText(city);
+
+        ;
         holder.txtthirdLine.setText(correct+"/"+attempted);
         holder.txtfourthLine.setText(percentage+"%");
-        holder.txtfifthLine.setText(city);
         holder.txtsixthLine.setText(age+", "+gender);
     }
 

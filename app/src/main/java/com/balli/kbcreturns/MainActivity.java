@@ -164,8 +164,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void leaderboard(View view) {
-        Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
-        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_SHORT).show();
+        final Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
+                startActivity(intent);
+            }
+
+        }, 2000L);
     }
     public void profile(View view) {
         if (prefs.getString("existingUser", "false").equals("true")){
@@ -293,8 +302,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case R.id.ms: {
-                Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_SHORT).show();
+                final Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
+                        startActivity(intent);
+                    }
+
+                }, 2000L);
                 break;
             }
 
