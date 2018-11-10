@@ -2,6 +2,7 @@ package com.balli.kbcreturns;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -32,6 +33,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+// set the adapter
+        recyclerView.setAdapter(mAdapter);
 //        List<String> input = new ArrayList<>();
 //        for (int i = 0; i < 100; i++) {
 //            input.add("Test" + i);

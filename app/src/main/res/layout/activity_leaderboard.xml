@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/toolbarblue"
     tools:context=".LeaderboardActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/toolbarblue"
            android:layout_alignParentTop="true">
 
         <TextView
@@ -26,8 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="Name"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/secondLine"
@@ -37,7 +36,9 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/firstLine"
             android:textColor="#ffffff"
-            android:textSize="12sp" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/thirdLine"
@@ -45,8 +46,9 @@
             android:layout_height="wrap_content"
             android:text="Correct/Attempted"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/fourthLine"
@@ -56,7 +58,8 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/thirdLine"
             android:textColor="#ffffff"
-            android:textSize="12sp" />
+            android:layout_marginBottom="5dp"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/fifthLine"
@@ -64,8 +67,10 @@
             android:layout_height="wrap_content"
             android:text="City"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:layout_marginRight="5dp"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/sixthLine"
@@ -75,7 +80,9 @@
             android:layout_below="@+id/fifthLine"
             android:layout_alignParentRight="true"
             android:textColor="#ffffff"
-            android:textSize="12sp" />
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="10sp" />
 
 
         </RelativeLayout>
@@ -86,17 +93,13 @@
             android:layout_above="@+id/note1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:scrollbars="vertical" />
 
         <RelativeLayout
             android:id="@+id/note1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:background="@drawable/toolbarblue"
             android:layout_alignParentBottom="true">
 
             <TextView
@@ -111,7 +114,7 @@
                 android:text="Note: If a particular quiz has been attempted more than once by a person, only the score of his first attempt is considered !!"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textStyle="italic" />
         </RelativeLayout>
 

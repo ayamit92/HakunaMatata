@@ -89,7 +89,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 //            }
 //        });
 
-        holder.txtfirstLine.setText(position+1+". "+name);
+        holder.txtfirstLine.setText("#"+(position+1)+" "+name);
         holder.txtsecondLine.setText("(" + uniqueid+")");
         holder.txtthirdLine.setText(correct+"/"+attempted);
         holder.txtfourthLine.setText(percentage+"%");

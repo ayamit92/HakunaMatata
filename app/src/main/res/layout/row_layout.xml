@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:background="@drawable/toolbarblue"
-    android:padding="6dp" >
-
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/firstLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="Amit Yadav"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
+        android:text="1. Amit Yadav"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/secondLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Amit Yadav123"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@+id/firstLine"
-        android:textColor="#ffffff"
-        android:textSize="12sp" />
+        android:textStyle="bold"
+        android:paddingLeft="5dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/thirdLine"
@@ -31,8 +33,9 @@
         android:layout_height="wrap_content"
         android:text="24/30"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
+        android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/fourthLine"
@@ -41,8 +44,9 @@
         android:text="50%"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/thirdLine"
-        android:textColor="#ffffff"
-        android:textSize="12sp" />
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/fifthLine"
@@ -50,8 +54,11 @@
         android:layout_height="wrap_content"
         android:text="Bikaner"
         android:layout_alignParentRight="true"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
+        android:layout_marginRight="5dp"
+        android:textStyle="bold"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/sixthLine"
@@ -60,8 +67,11 @@
         android:text="26, Male"
         android:layout_below="@+id/fifthLine"
         android:layout_alignParentRight="true"
-        android:textColor="#ffffff"
-        android:textSize="12sp" />
+        android:layout_marginRight="5dp"
+        android:textStyle="bold"
+        android:paddingRight="5dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp" />
 
 
 
