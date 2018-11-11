@@ -243,8 +243,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             epref = mDatabase.child("registeredUsersCount");
             epref.addListenerForSingleValueEvent(getRegistredUsersCount());
 
-//            epref = mDatabase.child("leaderboard");
-//            epref.addListenerForSingleValueEvent(leaderList());
+            epref = mDatabase.child("leaderboard");
+            epref.addListenerForSingleValueEvent(leaderList());
 
             epref = mDatabase.child("2018");
             epref.addListenerForSingleValueEvent(episodeList("2018"));
