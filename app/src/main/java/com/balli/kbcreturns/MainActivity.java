@@ -164,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void leaderboard(View view) {
+        epref = mDatabase.child("leaderboard");
+        epref.addListenerForSingleValueEvent(leaderList());
         Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_LONG).show();
         final Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
@@ -241,8 +243,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             epref = mDatabase.child("registeredUsersCount");
             epref.addListenerForSingleValueEvent(getRegistredUsersCount());
 
-            epref = mDatabase.child("leaderboard");
-            epref.addListenerForSingleValueEvent(leaderList());
+//            epref = mDatabase.child("leaderboard");
+//            epref.addListenerForSingleValueEvent(leaderList());
 
             epref = mDatabase.child("2018");
             epref.addListenerForSingleValueEvent(episodeList("2018"));
@@ -302,6 +304,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case R.id.ms: {
+                epref = mDatabase.child("leaderboard");
+                epref.addListenerForSingleValueEvent(leaderList());
                 Toast.makeText(getApplicationContext(), "Downloading the latest leaderboard!", Toast.LENGTH_LONG).show();
                 final Handler mHandler = new Handler();
                 mHandler.postDelayed(new Runnable() {

@@ -212,16 +212,16 @@ public class ScoreActivity extends AppCompatActivity {
                 int size = MainActivity.leadersList.size();
 
                 Log.i("chikoo", profileCorrect + "::" + MainActivity.leadersList.get(size - 1).getCorrect());
-                if (MainActivity.leadersList.get(size - 1).getCorrect().compareTo(profileCorrect) < 0) {
+                if (Integer.parseInt(MainActivity.leadersList.get(size - 1).getCorrect())<Integer.parseInt(profileCorrect)) {
                     mDatabase.child("leaderboard").child(uniqueId).setValue(r1);
                     //Log.i("chikoo","chikoo");
                     //MainActivity.leadersList.add(r1); Can create duplicacy issues if already there in leaderboard
-                    for (int k=0;k<size;k++){
-                        if (MainActivity.leadersList.get(k).getUniqueid().equals(profileUniqueId))
-                            MainActivity.leadersList.remove(k);
-                    }
-
-                    MainActivity.leadersList.add(r1);
+//                    for (int k=0;k<size;k++){
+//                        if (MainActivity.leadersList.get(k).getUniqueid().equals(profileUniqueId))
+//                            MainActivity.leadersList.remove(k);
+//                    }
+//
+//                    MainActivity.leadersList.add(r1);
                 }
             }
 //              testing by increasing leaderboard size to 1000
