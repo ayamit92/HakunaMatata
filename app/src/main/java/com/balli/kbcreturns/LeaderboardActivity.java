@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +22,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     static ArrayList<Registration> leadersListTopFifty = new ArrayList<Registration>();
     TextView note;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,14 @@ public class LeaderboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_leaderboard);
 
         note = (TextView) findViewById(R.id.textView11);
+
+        mAdView = (AdView) findViewById(R.id.adLeaderboard);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+//        production ad
+//        ads:adUnitId="ca-app-pub-9621990942730139/8538484392"
+//        test ad
+//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
         leadersListTopFifty.clear();
 

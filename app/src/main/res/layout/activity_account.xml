@@ -4,167 +4,187 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/toolbarblue"
     tools:context=".AccountActivity">
 
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/toolbarpurpregular">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/toolbarblue">
 
         <TextView
-            android:id="@+id/headertext"
+            android:id="@+id/firstLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:text="Name"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/secondLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/firstLine"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="UniqueId"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/thirdLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="MY PROFILE"
-            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:text="Correct/Attempted"
             android:textColor="#ffffff"
-            android:textStyle="italic"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/fourthLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thirdLine"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="Percentage"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/fifthLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:paddingTop="10dp"
+            android:text="City"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/sixthLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/fifthLine"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:text="Age, Gender"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/account_nameid"
+        android:id="@+id/overview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/header"
-        android:background="@drawable/toolbarpurpround40">
+        android:background="@drawable/toolbarblue"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_below="@+id/header">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/firstLine1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true">
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:textColor="#ffffff"
+            android:text="Amit Yadav"
+            android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/textname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Amit Yadav"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textStyle="italic"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/secondLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstLine1"
+            android:layout_marginLeft="5dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:text="(Amit Yadav123)"
+            android:textColor="#ffffff"
+            android:textSize="14sp"/>
 
-            <TextView
-                android:id="@+id/textunique"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textname"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:text="(Unique Id: Amit Yadav11)"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textStyle="italic"
-                android:textSize="15sp" />
+        <TextView
+            android:id="@+id/thirdLine3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:textColor="#ffffff"
+            android:text="24/30"
+            android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/asl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_below="@id/textunique"
-                android:text="26, Male, Bikaner"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textStyle="italic"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/fourthLine4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thirdLine3"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dp"
+            android:text="50%"
+            android:textColor="#ffffff"
+            android:textSize="14sp"/>
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/fifthLine5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:text="Bikaner"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/sixthLine6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/fifthLine5"
+            android:layout_marginRight="5dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="5dp"
+            android:text="26, Male"
+            android:textColor="#ffffff"
+            android:textSize="14sp"/>
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/account_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/account_nameid"
-        android:background="@drawable/toolbarpurpround40">
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/toolbarblue">
 
-        <TextView
-            android:id="@+id/correct"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Total Correct Answers: 10"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textStyle="italic"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/attempted"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/correct"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:text="Total Questions Attempted: 20"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textStyle="italic"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/percentage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/attempted"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="Percentage of Correct: 50.0%"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textStyle="italic"
-            android:textSize="18sp" />
+            ads:adSize="MEDIUM_RECTANGLE"
+            ads:adUnitId="ca-app-pub-9621990942730139/1059126223"></com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/disclaimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/account_score"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp"
-        android:text="Note: If a particular quiz has been attempted more than once by a person, only the score of his first attempt is considered !!"
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textStyle="italic"
-        android:textSize="15sp" />
 
 </RelativeLayout>

@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class AccountActivity extends AppCompatActivity {
 
-    TextView textname, textunique, asl, correct, attempted, percentage;
+    TextView textname, textunique, score, percentage, city, ag;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +26,20 @@ public class AccountActivity extends AppCompatActivity {
 
         editor = prefs.edit();
 
-        textname = (TextView) findViewById(R.id.textname);
-        textunique = (TextView) findViewById(R.id.textunique);
-        asl = (TextView) findViewById(R.id.asl);
-        correct = (TextView) findViewById(R.id.correct);
-        attempted = (TextView) findViewById(R.id.attempted);
-        percentage = (TextView) findViewById(R.id.percentage);
+        mAdView = (AdView) findViewById(R.id.adProfile);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+//        production ad
+//        ads:adUnitId="ca-app-pub-9621990942730139/1059126223"
+//        test ad
+//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+
+        textname = (TextView) findViewById(R.id.firstLine1);
+        textunique = (TextView) findViewById(R.id.secondLine2);
+        score = (TextView) findViewById(R.id.thirdLine3);
+        percentage = (TextView) findViewById(R.id.fourthLine4);
+        city = (TextView) findViewById(R.id.fifthLine5);
+        ag = (TextView) findViewById(R.id.sixthLine6);
 
 
         String profileName=prefs.getString("profileName", "Invalid");
@@ -39,13 +51,24 @@ public class AccountActivity extends AppCompatActivity {
         String profileUniqueId=prefs.getString("uniqueId", "Invalid");
         String profilePercentage=prefs.getString("profilePercentage", "Invalid");
 
-        textname.setText(profileName);
-        textunique.setText("(Unique Id: "+profileUniqueId+")");
-        asl.setText(profileAge+", "+profileGender+", "+profileCity);
-        correct.setText("Total Correct Answers: "+profileCorrect);
-        attempted.setText("Total Questions Attempted: "+profileAttempted);
-        percentage.setText("Percentage of Correct: "+profilePercentage+"%");
+        if (profileName.length()>15)
+            textname.setText(profileName.substring(0,15)+".");
+        else
+            textname.setText(profileName);
 
+        if (profileUniqueId.length()>15)
+            textunique.setText("("+profileUniqueId.substring(0,15)+"."+")");
+        else
+            textunique.setText("("+profileUniqueId+")");
+
+        if (profileCity.length()>15)
+            city.setText(profileCity.substring(0,15)+".");
+        else
+            city.setText(profileCity);
+
+        score.setText(profileCorrect+"/"+profileAttempted);
+        percentage.setText(profilePercentage+"%");
+        ag.setText(profileAge+", "+profileGender);
     }
 
     @Override
