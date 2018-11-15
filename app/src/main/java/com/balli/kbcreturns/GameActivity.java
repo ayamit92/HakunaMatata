@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.ads.*;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -59,8 +61,9 @@ public class GameActivity extends AppCompatActivity {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
-//    private AdView mAdView;
+    private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+//    private  com.facebook.ads.AdView facebookAdView;
 
     String year;
 
@@ -72,11 +75,24 @@ public class GameActivity extends AppCompatActivity {
         if (count < episodeQuestionMapDynamic.get(episodeName).size() - 1) {
             if (clicked) {
 
-                if (mInterstitialAd.isLoaded() && count==1) {
+                if (count==2) {
+                mInterstitialAd = new InterstitialAd(this);
+                mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5521917745");
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+//              production ad
+//              mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5521917745");
+//              test add
+//              mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+                } else {
+                    Log.i("TAG", "The interstitial wasn't loaded yet.");
+                }
+
+                if (count==4 && mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 } else {
                     Log.i("TAG", "The interstitial wasn't loaded yet.");
                 }
+
                 setValues(++count);
                 clicked = false;
                 flag = false;
@@ -265,22 +281,19 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-//        mAdView = (AdView) findViewById(R.id.adView2);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
+        mAdView = (AdView) findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 //        production ad
 //        ads:adUnitId=""
 //        test ad
 //        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5521917745");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//        production ad
-//        mInterstitialAd.setAdUnitId("ca-app-pub-9621990942730139/5521917745");
-//        test add
-//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-
+//        AdSettings.addTestDevice("eae5f63d-6fa0-4ec0-9bc4-7a9368cde3f1");
+//        facebookAdView = new com.facebook.ads.AdView(this, "YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+//        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
+//        adContainer.addView(facebookAdView);
+//        facebookAdView.loadAd();
 
         next = (Button) findViewById(R.id.button9);
         optiona = (Button) findViewById(R.id.button4);
@@ -341,7 +354,16 @@ public class GameActivity extends AppCompatActivity {
 
 
     }
+//    @Override
+//    protected void onDestroy() {
+//        if (facebookAdView != null) {
+//            facebookAdView.destroy();
+//        }
+//        super.onDestroy();
+//    }
 }
+
+
 
 //      making a function, so could be called from anywhere
 //      everytime function is called, value is retrieved from firebase, thus making switching between questions a bit slow (especially loading the first question),

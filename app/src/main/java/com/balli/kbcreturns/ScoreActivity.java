@@ -44,7 +44,7 @@ public class ScoreActivity extends AppCompatActivity {
     String attempts;
     AlertDialog.Builder builder;
     Boolean flag = false;
-//    private AdView mAdView;
+    private AdView mAdView;
 
     String episodeAttempt;
     private static DecimalFormat df2 = new DecimalFormat(".##");
@@ -144,6 +144,15 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
+        mAdView = (AdView) findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+//        production ad
+//        ads:adUnitId="ca-app-pub-9621990942730139/5647315915"
+//        test ad
+//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+
+
         builder = new AlertDialog.Builder(this);
 //        customDialogBuilder();
 
@@ -235,14 +244,6 @@ public class ScoreActivity extends AppCompatActivity {
         scoreView.setText(result);
         percentageView.setText("You have performed better than " + percentage + "% of the people");
         attemptView.setText("This quiz has been attempted by " + attempts + " people");
-
-//        mAdView = (AdView) findViewById(R.id.adView3);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
-//        production ad
-//        ads:adUnitId="ca-app-pub-9621990942730139/9048347794"
-//        test ad
-//        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
 
     }
 

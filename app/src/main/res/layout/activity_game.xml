@@ -109,14 +109,22 @@
         android:textColor="#ffffff"
         android:textSize="15sp" />
 
-    <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/adView2"-->
-        <!--android:layout_width="wrap_content"-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/banner_container"-->
+        <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_above="@id/nexgen"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--ads:adSize="BANNER"-->
-        <!--ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>-->
+        <!--android:layout_below="@+id/textQuestionNumber"-->
+        <!--android:orientation="vertical"-->
+        <!--/>-->
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nexgen"
+        android:layout_centerHorizontal="true"
+        ads:adSize="LARGE_BANNER"
+        ads:adUnitId="ca-app-pub-9621990942730139/3525282120"></com.google.android.gms.ads.AdView>
 
     <LinearLayout
         android:id="@+id/nexgen"

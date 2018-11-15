@@ -214,7 +214,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         MobileAds.initialize(this, "ca-app-pub-9621990942730139~2703155048");
-        //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
